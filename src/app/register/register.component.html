@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+
+      <div class="panel-heading mb-3">Dane pojazdu</div>
+
+      <div class="form-group mt-3">
+        <label for="productionYear">Rok produkcji</label>
+        <select class="form-control" id="productionYear"
+                (change)="registerService.setVehicleProperty('productionYear',$event.target.value); registerService.getVehicles('mark')">
+          <option disabled selected>Rok produkcji</option>
+          <option *ngFor="let r of registerService.productionYears ">{{r}}</option>
+        </select>
+      </div>
+
+
+      <div *ngIf="registerService.marks.length != 0">
+        <label for="mark">Marka Pojazdu</label>
+        <div id="mark">
+          <button [value]="mark"
+                  (click)="registerService.setVehicleProperty('mark',$event.target.value); registerService.getVehicles('model');registerService.onButtonGroupClick($event)"
+                  class="btn btn-default btn-question"
+                  *ngFor="let mark of registerService.marks">{{mark}}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.models.length != 0">
+        <label for="model">Model Pojazdu</label>
+        <div id="model">
+          <button [value]="model"
+                  (click)="registerService.setVehicleProperty('model',$event.target.value); registerService.getVehicles('engineCapacity');registerService.onButtonGroupClick($event)"
+                  class="btn btn-default btn-question"
+                  *ngFor="let model of registerService.models">{{model}}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.engineCapacities.length != 0">
+        <label for="engineCapacity">Pojemność silnika</label>
+        <div id="engineCapacity">
+          <button [value]="engineCapacity"
+                  (click)="registerService.setVehicleProperty('engineCapacity',$event.target.value); registerService.getVehicles('type');registerService.onButtonGroupClick($event)"
+                  class="btn btn-default btn-question"
+                  *ngFor="let engineCapacity of registerService.engineCapacities">{{engineCapacity}}
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.types.length != 0">
+        <label for="type">Typ</label>
+        <div id="type">
+          <button [value]="type"
+                  (click)="registerService.setVehicleProperty('type',$event.target.value); registerService.getVehicles('name');registerService.onButtonGroupClick($event)"
+                  class="btn btn-default btn-question"
+                  *ngFor="let type of registerService.types">{{type}}
+          </button>
+        </div>
+      </div>
+
+      {{registerService.names[0]}}
+
+
+
+    </div>
+  </div>
+</div>
