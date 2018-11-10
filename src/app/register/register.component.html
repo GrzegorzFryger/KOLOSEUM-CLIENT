@@ -52,15 +52,137 @@
         <label for="type">Typ</label>
         <div id="type">
           <button [value]="type"
-                  (click)="registerService.setVehicleProperty('type',$event.target.value); registerService.getVehicles('name');registerService.onButtonGroupClick($event)"
+                  (click)="registerService.setVehicleProperty('type',$event.target.value); registerService.getVehicle();registerService.onButtonGroupClick($event)"
                   class="btn btn-default btn-question"
                   *ngFor="let type of registerService.types">{{type}}
           </button>
         </div>
       </div>
 
-      {{registerService.names[0]}}
 
+      <div class="panel-heading mb-3 mt-3">Dane Kierowcy</div>
+
+
+      <label for="dayOfBirth">Data urodzenia</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group" id="dayOfBirth">
+            <input class="form-control" required [(ngModel)]="pickedDayOfBirth" placeholder="yyyy-mm-dd"
+                   name="createdDate" ngbDatepicker [minDate]="{year: 1930, month: 1, day: 1}" #dBirth="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dBirth.toggle()" type="button">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <label for="drivingLicenseIssueDate">Data uzyskania prawa jazdy</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group" id="drivingLicenseIssueDate">
+            <input class="form-control"  required [(ngModel)]="pickedDrivingLicenseIssueDate" placeholder="yyyy-mm-dd"
+                   name="createdDate" ngbDatepicker [minDate]="{year: 1950, month: 1, day: 1}"
+                   #dLicenseIssueDate="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dLicenseIssueDate.toggle()" type="button">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <div class="button-wrapper">
+        <div class="form-label">
+          <label>Łączny okres ubezpieczenia OC w ostatnich 5 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('history5YearsCountOc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.person.insuranceHistory.history5YearsCountOc > 0" class="button-wrapper">
+        <div class="form-label">
+          <label>Liczba szkód OC spowodowanych w ostatnich 5 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.person.insuranceHistory.history5YearsCountOc > 0" class="button-wrapper">
+        <div class="form-label">
+          <label>Liczba szkód OC spowodowanych w ostatnich 5 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountOc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+      <div class="button-wrapper">
+        <div class="form-label">
+          <label>Łączny okres ubezpieczenia AC w ostatnich 5 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('history5YearsCountAc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.person.insuranceHistory.history5YearsCountAc > 0" class="button-wrapper">
+        <div class="form-label">
+          <label>Liczba szkód AC spowodowanych w ostatnich 5 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('last5YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+      <div *ngIf="registerService.person.insuranceHistory.history5YearsCountAc > 0" class="button-wrapper">
+        <div class="form-label">
+          <label>Liczba szkód AC spowodowanych w ostatnich 2 latach</label>
+        </div>
+        <div style="display: block">
+          <button class="btn btn-default btn-questionHistory" [value]="0" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">0</button>
+          <button class="btn btn-default btn-questionHistory" [value]="1" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">1</button>
+          <button class="btn btn-default btn-questionHistory" [value]="2" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">2</button>
+          <button class="btn btn-default btn-questionHistory" [value]="3" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">3</button>
+          <button class="btn btn-default btn-questionHistory" [value]="4" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">4</button>
+          <button class="btn btn-default btn-questionHistory" [value]="5" (click)="registerService.setInsuranceHistoryValue('last2YearsDamagesCountAc',$event.target.value); registerService.onButtonGroupClick($event)">5</button>
+        </div>
+      </div>
+
+
+      <button type="submit" (click)="calculatePrice()" class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
+        OBLICZ SKŁADKĘ &gt;
+      </button>
 
 
     </div>
