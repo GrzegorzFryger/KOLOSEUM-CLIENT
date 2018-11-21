@@ -23,7 +23,7 @@ export class ApplicationService {
     this.productionYears.sort();
   }
 
-  static onButtonGroupClick($event) {
+  onButtonGroupClick($event) {
     const clickedElement = $event.target || $event.srcElement;
 
     if (clickedElement.nodeName === 'BUTTON') {
