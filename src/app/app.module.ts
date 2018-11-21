@@ -7,14 +7,17 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { ApplicationComponent } from './application/application.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {RegisterService} from './register/register.service';
+import {ApplicationService} from './application/application.service';
+import { UserRegisterComponent } from './user-register/user-register.component';
+import {UserRegisterService} from './user-register/user-register.service';
 
 const appRoutes: Routes = [
-  {path: 'register', component: RegisterComponent},
+  {path: 'application', component: ApplicationComponent},
+  {path: 'user', component: UserRegisterComponent},
   {path: '', component: HomeComponent}
 ];
 
@@ -23,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    RegisterComponent
+    ApplicationComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
   ],
   providers: [
-    RegisterService
+    ApplicationService,
+    UserRegisterService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,7 +5,7 @@ import {Register} from '../models/register.model';
 import {Person} from '../models/person.model';
 
 @Injectable()
-export class RegisterService {
+export class ApplicationService {
 
   marks = Array<String>();
   models = Array<String>();

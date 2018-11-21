@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {RegisterService} from './register.service';
+import {ApplicationService} from './application.service';
 
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './application.component.html',
+  styleUrls: ['./application.component.css']
 })
 
-export class RegisterComponent implements OnInit {
+export class ApplicationComponent implements OnInit {
 
-  registerService: RegisterService;
+  registerService: ApplicationService;
   pickedDayOfBirth;
   pickedDrivingLicenseIssueDate;
 
-  constructor(private service: RegisterService) {
+  constructor(private service: ApplicationService) {
   }
 
 
