@@ -17,6 +17,23 @@
           <a class="nav-link" href="/application">Application</a>
         </li>
 
+
+
+        <li class="nav-item dropdown">
+          <a *ngIf="!applicationUserService.isUserAuthorised()" class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile
+          </a>
+          <a *ngIf="applicationUserService.isUserAuthorised()" class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{applicationUserService.loginedUser.applicationUser.firstName}}  {{applicationUserService.loginedUser.applicationUser.lastName}}
+          </a>
+          <div *ngIf="!applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/user">Login / Register</a>
+          </div>
+          <div *ngIf="applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" (click)="applicationUserService.logout()">Logout</a>
+          </div>
+        </li>
+
       </ul>
 
     </div>
