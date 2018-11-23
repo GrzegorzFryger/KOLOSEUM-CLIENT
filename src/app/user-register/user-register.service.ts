@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {ApplicationUser} from '../models/application-user.model';
 import {Observable} from 'rxjs/Observable';
 import {LoginUserModel} from '../models/login-user.model';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class UserRegisterService {
 
   loginedUser: LoginUserModel = new LoginUserModel();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   registerUser(user: ApplicationUser): Observable<ApplicationUser> {
@@ -26,6 +27,7 @@ export class UserRegisterService {
 
   logout() {
     localStorage.clear();
+    this.router.navigate(['/user']);
   }
 
   getUser() {

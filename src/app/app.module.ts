@@ -16,6 +16,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import {UserRegisterService} from './user-register/user-register.service';
 import {AuthInterceptor} from './auth.interceptor';
 import {AuthGuard} from './auth.guard';
+import { TodosComponent } from './todos/todos.component';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     ApplicationComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    TodosComponent
   ],
   imports: [
     BrowserModule,
