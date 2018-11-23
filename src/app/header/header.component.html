@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <div class="row">
 
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="/">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/application">Application</a>
+          <a class="nav-link" routerLink="/application">Application</a>
         </li>
+      </ul>
 
-
-
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a *ngIf="!applicationUserService.isUserAuthorised()" class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
@@ -27,14 +27,15 @@
             {{applicationUserService.loginedUser.applicationUser.firstName}}  {{applicationUserService.loginedUser.applicationUser.lastName}}
           </a>
           <div *ngIf="!applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/user">Login / Register</a>
+            <a class="dropdown-item" routerLink="/user">Login / Register</a>
           </div>
           <div *ngIf="applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" (click)="applicationUserService.logout()">Logout</a>
           </div>
         </li>
-
       </ul>
+
+
 
     </div>
   </div>

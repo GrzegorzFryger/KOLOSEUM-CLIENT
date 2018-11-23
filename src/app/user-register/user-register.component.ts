@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserRegisterService} from './user-register.service';
 import {ApplicationUser} from '../models/application-user.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -15,7 +16,7 @@ export class UserRegisterComponent implements OnInit {
   errorToShow;
   userRegisteredMessage: string;
 
-  constructor(private service: UserRegisterService) {
+  constructor(private service: UserRegisterService, private router: Router) {
   }
 
   ngOnInit() {
@@ -46,6 +47,7 @@ export class UserRegisterComponent implements OnInit {
       localStorage.clear();
       localStorage.setItem('authUser', JSON.stringify(resp));
       this.service.loginedUser = resp;
+      this.router.navigate(['/']);
     });
   }
 

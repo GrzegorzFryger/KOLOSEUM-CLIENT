@@ -28,5 +28,10 @@ export class UserRegisterService {
     localStorage.clear();
   }
 
+  getUser() {
+    if (this.isUserAuthorised()) {
+      this.loginedUser = JSON.parse(localStorage.getItem('authUser'));
+    }
+  }
 }
 

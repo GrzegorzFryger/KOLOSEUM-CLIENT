@@ -10,15 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { ApplicationComponent } from './application/application.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApplicationService} from './application/application.service';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import {UserRegisterService} from './user-register/user-register.service';
+import {AuthInterceptor} from './auth.interceptor';
+import {AuthGuard} from './auth.guard';
 
 const appRoutes: Routes = [
-  {path: 'application', component: ApplicationComponent},
+  {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserRegisterComponent},
-  {path: '', component: HomeComponent}
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({
@@ -38,7 +41,13 @@ const appRoutes: Routes = [
   ],
   providers: [
     ApplicationService,
-    UserRegisterService
+    UserRegisterService,
+    AuthGuard,
+    HeaderComponent, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
