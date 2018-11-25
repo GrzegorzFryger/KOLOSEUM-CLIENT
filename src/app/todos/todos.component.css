@@ -1,0 +1,4 @@
+.fix-body-scroll {
+  overflow-y: auto;
+  height: 900px;
+}

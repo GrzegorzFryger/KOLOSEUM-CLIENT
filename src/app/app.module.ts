@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 
 
 
@@ -17,10 +18,12 @@ import {UserRegisterService} from './user-register/user-register.service';
 import {AuthInterceptor} from './auth.interceptor';
 import {AuthGuard} from './auth.guard';
 import { TodosComponent } from './todos/todos.component';
+import {TodoService} from './todos/todo.service';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserRegisterComponent},
+  {path: 'todos', component: TodosComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
 
 ];
@@ -40,11 +43,14 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     ApplicationService,
     UserRegisterService,
+    TodoService,
     AuthGuard,
+    TodosComponent,
     HeaderComponent, {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
