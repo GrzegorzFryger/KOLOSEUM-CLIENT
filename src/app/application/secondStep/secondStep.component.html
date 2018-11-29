@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-12">
+
+
+      <div class="card-columns">
+        <div class="card mb-3" *ngFor="let riskVariant of application.riskVariants"
+             style="min-width: 250px">
+          <div class="card-header">{{riskVariant.displayName}}</div>
+          <div class="card-body">
+            <p class="card-text">Cena: {{getPrice(riskVariant.premiumList)}}zł</p>
+          </div>
+          <button class="btn btn-outline-primary btn-block">Select</button>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div>
+
+          <h4>Cena łączna: {{totalPrice}}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-default btn-question active" (click)="setInstallmentAmount(1);registerService.onButtonGroupClick($event)" >Jednorazowa</button>
+        <button class="btn btn-default btn-question" (click)="setInstallmentAmount(2);registerService.onButtonGroupClick($event)">Dwie raty</button>
+        <button class="btn btn-default btn-question" (click)="setInstallmentAmount(4);registerService.onButtonGroupClick($event)">Cztery raty</button>
+        <button class="btn btn-default btn-question" (click)="setInstallmentAmount(12);registerService.onButtonGroupClick($event)">Dwanaście rat</button>
+      </div>
+
+    </div>
+
+    <button (click)="getApplicaiotn()" class="btn">asd</button>
+
+
+  </div>
+</div>

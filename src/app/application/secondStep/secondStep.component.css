@@ -1,0 +1,100 @@
+
+.panel-heading {
+  color: #9b9a99;
+  border-bottom: 1px solid #696868;
+  background: 0 0;
+  font-size: 20px;
+  padding-left: 0!important;
+}
+
+.btn.btn-default.btn-question, .btn.btn-default.btn-question:hover {
+  font-size: 14px;
+  line-height: 16px;
+  border-radius: 0;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 3px 4px 0;
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  width: 185px;
+  height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 22px 0 20px;
+}
+
+.wrapper-default .btn.btn-default, .wrapper-default .btn.btn-default:hover {
+  border: 1px solid #f2f1f0;
+  color: #363635;
+  background: #f7fafb;
+}
+
+.wrapper-default .btn.btn-default.active, .btn.btn-default.active   {
+  border: 2px solid #3498db;
+  background: #f4f6f7;
+}
+
+.btn.btn-default.btn-question.active {
+  font-weight: 400;
+}
+
+.btn-question{
+  border: 1px solid #dddddd;
+  color: #363635;
+  background: #e8e8e8;
+}
+
+.combo-wrapper {
+  margin: 0 0 4px;
+  border: 1px solid #e6e4e3;
+  height: 49px;
+  cursor: pointer;
+}
+
+
+.btn.btn-default.btn-question, .btn.btn-default.btn-question:hover {
+  font-size: 14px;
+  line-height: 16px;
+  border-radius: 0;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 5px 4px 0;
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  width: 165px;
+  height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 22px 0 20px;
+  margin-top: 30px;
+}
+
+.btn.btn-default.btn-questionHistory, .btn.btn-default.btn-questionHistory:hover {
+  font-size: 14px;
+  line-height: 16px;
+  border-radius: 0;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 1px 4px 0;
+  position: relative;
+  display: inline-block;
+  white-space: normal;
+  width: 110px;
+  height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 22px 0 20px;
+}
+
+.button-nextStep {
+  color: #000;
+  font-weight: bold;
+  background-color: #2980b9;
+  padding: 22px 0 20px;
+  height: 60px;
+}

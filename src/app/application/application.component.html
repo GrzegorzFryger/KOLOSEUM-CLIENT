@@ -7,7 +7,7 @@
 
       <div class="form-group mt-3">
         <label for="productionYear">Rok produkcji</label>
-        <select class="form-control" id="productionYear"
+        <select class="form-control" id="productionYear" (click)="vehicle"
                 (change)="registerService.setVehicleProperty('productionYear',$event.target.value); registerService.getVehicles('mark')">
           <option disabled selected>Rok produkcji</option>
           <option *ngFor="let r of registerService.productionYears ">{{r}}</option>
@@ -180,7 +180,7 @@
       </div>
 
 
-      <button type="submit" (click)="calculatePrice()" class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
+      <button type="submit" (click)="calculatePrice()" routerLink="second" class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
         OBLICZ SKŁADKĘ &gt;
       </button>
 

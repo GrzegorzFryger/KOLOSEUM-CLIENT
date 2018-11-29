@@ -22,7 +22,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" routerLink="/todos">{{applicationUserService.loginedUser.applicationUser.firstName}}'s Tasks</a>
-            <a class="dropdown-item" (click)="openModal(addTask)">Add task</a>
+            <a class="dropdown-item" routerLink="/todos" (click)="openModal(addTask)">Add task</a>
           </div>
         </li>
       </ul>

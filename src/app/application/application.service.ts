@@ -1,8 +1,10 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable, Input} from '@angular/core';
+import {EventEmitter, Injectable, Input, Output} from '@angular/core';
 import {Vehicle} from '../models/vehicle.model';
 import {Register} from '../models/register.model';
 import {Person} from '../models/person.model';
+import {InsuranceApplicaion} from '../models/insurance-applicaion.model';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ApplicationService {
@@ -15,6 +17,7 @@ export class ApplicationService {
   productionYears = Array<String>();
   @Input() vehicle: Vehicle = new Vehicle();
   @Input() person: Person = new Person();
+  application: InsuranceApplicaion = new InsuranceApplicaion();
 
   register: Register = new Register();
 
@@ -69,9 +72,19 @@ export class ApplicationService {
 
   setVehicleProperty(value: string, attribute: string) {
     if (value === 'productionYear') {
+      this.vehicle = new Vehicle();
+      this.models = [];
+      this.engineCapacities = [];
+      this.types = [];
       this.vehicle.productionYear = attribute;
     }
     if (value === 'mark') {
+      this.vehicle.model = null;
+      this.vehicle.engineCapacity = null;
+      this.vehicle.type = null;
+      this.models = [];
+      this.engineCapacities = [];
+      this.types = [];
       this.vehicle.mark = attribute;
     }
     if (value === 'model') {
@@ -89,12 +102,15 @@ export class ApplicationService {
   }
 
   setInsuranceHistoryValue(attribute: string, value: number) {
-    console.log(value);
     if (attribute === 'history5YearsCountOc') {
       this.person.insuranceHistory.history5YearsCountOc = value;
+      this.person.insuranceHistory.last2YearsDamagesCountOc = 0;
+      this.person.insuranceHistory.last5YearsDamagesCountOc = 0;
     }
     if (attribute === 'history5YearsCountAc') {
       this.person.insuranceHistory.history5YearsCountAc = value;
+      this.person.insuranceHistory.last2YearsDamagesCountAc = 0;
+      this.person.insuranceHistory.last5YearsDamagesCountAc = 0;
     }
     if (attribute === 'last2YearsDamagesCountAc') {
       this.person.insuranceHistory.last2YearsDamagesCountAc = value;
@@ -111,9 +127,14 @@ export class ApplicationService {
   }
 
   calculatePriceCall() {
-    this.http.post('http://localhost:8080/api/application', this.register).toPromise().then(resp => {
+    this.http.post<InsuranceApplicaion>('http://localhost:8080/api/application', this.register).toPromise().then(resp => {
+      this.application = resp;
       console.log(resp);
     });
+  }
+
+  getCalculationById(id: number): Observable<InsuranceApplicaion> {
+    return this.http.get<InsuranceApplicaion>('http://localhost:8080/api/application/' + id);
   }
 
 

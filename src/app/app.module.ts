@@ -19,9 +19,11 @@ import {AuthInterceptor} from './auth.interceptor';
 import {AuthGuard} from './auth.guard';
 import { TodosComponent } from './todos/todos.component';
 import {TodoService} from './todos/todo.service';
+import { SecondStepComponent } from './application/secondStep/secondStep.component';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
+  {path: 'application/second', component: SecondStepComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserRegisterComponent},
   {path: 'todos', component: TodosComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ApplicationComponent,
     UserRegisterComponent,
-    TodosComponent
+    TodosComponent,
+    SecondStepComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,10 @@
 .fix-body-scroll {
   overflow-y: auto;
   height: 900px;
+  display: flex;
+}
+
+.todoList-wrapper {
+  display: inline-block;
+  max-height: 100%;
 }

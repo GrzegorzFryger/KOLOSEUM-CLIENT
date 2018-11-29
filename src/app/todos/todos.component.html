@@ -6,46 +6,49 @@
         User {{applicationUser.firstName}} {{applicationUser.lastName}} don't have any tasks
       </div>
 
+      <div class="todoList-wrapper">
+        <div class="row fix-body-scroll">
 
-      <div class="row fix-body-scroll">
-
-
-        <div class="col-sm-12 mt-3" *ngFor="let todo of todosService.userTodos">
-          <div class="card">
-            <div class="card-header text-center pb-0">
-              <nav>
-                <div class="nav nav-tabs position-relative " id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basic</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Details</a>
-                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">History</a>
-                </div>
-              </nav>
-            </div>
-            <div class="card-body">
-
-              <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-                  <h5 class="card-title">{{todo.title}}</h5>
-                  <p class="card-text">{{todo.text}}</p>
-
-
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  <p class="card-text"><b>Owner</b> {{todo.user.lastName}}  {{todo.user.lastName}}</p>
-                  <p class="card-text"><b>State</b> {{todo.state}} </p>
-                  <p class="card-text"><b>Last Modyfication</b> {{todo.lastModification}} </p>
-                </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+          <div class="col-sm-12 mt-3" *ngFor="let todo of todosService.userTodos">
+            <div class="card">
+              <div class="card-header text-center pb-0">
+                <nav>
+                  <div class="nav nav-tabs position-relative " id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="true">Basic</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">Details</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                       aria-controls="nav-contact" aria-selected="false">History</a>
+                  </div>
+                </nav>
               </div>
-            </div>
-            <div class="card-footer text-muted pb-0">
-              <p class="float-left mt-2 ">Created {{todo.createdDate}}</p>
-              <a href="#" class="btn btn-success float-right">Edit</a>
+              <div class="card-body">
+
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <h5 class="card-title">{{todo.title}}</h5>
+                    <p class="card-text">{{todo.text}}</p>
+
+
+                  </div>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <p class="card-text"><b>Owner</b> {{todo.user.lastName}} {{todo.user.lastName}}</p>
+                    <p class="card-text"><b>State</b> {{todo.state}} </p>
+                    <p class="card-text"><b>Last Modyfication</b> {{todo.lastModification}} </p>
+                  </div>
+                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-muted pb-0">
+                <p class="float-left mt-2 ">Created {{todo.createdDate}}</p>
+                <a href="#" class="btn btn-success float-right">Edit</a>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
