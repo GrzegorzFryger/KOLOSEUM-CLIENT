@@ -135,6 +135,7 @@ export class ApplicationService {
 
   getCalculationById(id: number): Observable<InsuranceApplicaion> {
     return this.http.get<InsuranceApplicaion>('http://localhost:8080/api/application/' + id);
+
   }
 
 

@@ -11,17 +11,30 @@ import {PremiumList} from '../../models/premium-list.model';
 export class SecondStepComponent implements OnInit {
 
   constructor(private applicationService: ApplicationService) {
+    this.applicationsService = this.applicationService;
   }
 
   application: InsuranceApplicaion = new InsuranceApplicaion();
   totalPrice = 0;
+  instaltments = [{name: 'Jednorazowa', value: 1}, {name: 'Dwie raty', value: 2}, {name: 'Cztery raty', value: 4}, {
+    name: 'Dwanaście rat',
+    value: 12
+  }];
+  applicationsService;
+
 
   ngOnInit() {
+    this.application.riskVariants.forEach(risk => {
+      if (risk.name === 'OC') {risk.addedToCart = true; }
+    });
+    this.recalculateBaseOnInstaltment();
   }
 
   getApplicaiotn() {
     this.applicationService.getCalculationById(5).subscribe(resp => {
       this.application = resp;
+
+      this.ngOnInit();
     });
   }
 
@@ -29,6 +42,7 @@ export class SecondStepComponent implements OnInit {
     let total = 0;
     if (this.application.installmentAmount === 1) {
       premiumList.one.forEach(s => total += s);
+
     }
     if (this.application.installmentAmount === 2) {
       premiumList.two.forEach(s => total += s);
@@ -47,5 +61,31 @@ export class SecondStepComponent implements OnInit {
     this.application.installmentAmount = amount;
   }
 
+  addRiskToCart(riskName: string) {
+    this.application.riskVariants.forEach(risk => {
+      if (risk.name === riskName && risk.addedToCart !== true) {
+        this.totalPrice = this.totalPrice + this.getPrice(risk.premiumList);
+        risk.addedToCart = true;
+      }
+    });
+  }
+
+  removeFromCart(riskName: string) {
+    this.application.riskVariants.forEach(risk => {
+      if (risk.name === riskName && risk.addedToCart !== false) {
+        this.totalPrice = this.totalPrice - this.getPrice(risk.premiumList);
+        risk.addedToCart = false;
+      }
+    });
+  }
+
+  recalculateBaseOnInstaltment() {
+    this.totalPrice = 0;
+    this.application.riskVariants.forEach(risk => {
+      if (risk.addedToCart) {
+        this.totalPrice = this.totalPrice + this.getPrice(risk.premiumList);
+      }
+    });
+  }
 
 }

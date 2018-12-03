@@ -5,6 +5,7 @@ export class Risk {
   premiumList: PremiumList;
   sum: number;
   displayName: string;
+  addedToCart = false;
 
 }
 
