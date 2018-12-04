@@ -8,6 +8,7 @@ export class InsuranceApplicaion {
   persons: Array<Person>;
   registerDate: Date;
   riskVariants: Array<Risk>;
+  risks: Array<Risk>;
   state: string;
   vehicle: Vehicle;
   installmentAmount: number;

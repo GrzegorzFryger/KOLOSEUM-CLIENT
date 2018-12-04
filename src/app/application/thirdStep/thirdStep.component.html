@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-10">
+
+    <div class="panel-heading mb-3">Dane osoby</div>
+
+    <div class="form-group">
+      <label for="customerName">First Name</label>
+      <input [(ngModel)]="application.persons[0].firstName" type="text" class="form-control" id="customerName" placeholder="First Name">
+    </div>
+
+    <div class="form-group">
+      <label for="customerLastName">Last Name</label>
+      <input [(ngModel)]="application.persons[0].lastName" type="text" class="form-control" id="customerLastName" placeholder="Last Name">
+    </div>
+
+    <div class="form-group">
+      <label for="customerPesel">Pesel</label>
+      <input [(ngModel)]="application.persons[0].pesel" type="text" class="form-control" id="customerPesel" placeholder="Pesel">
+    </div>
+
+      <div class="panel-heading mb-3">Adres zamieszkania</div>
+
+      <div class="form-group">
+        <label for="adressPostalCode">Postal Code</label>
+        <input [(ngModel)]="application.persons[0].address.postalCode" type="text" class="form-control" id="adressPostalCode" placeholder="Postal Code">
+      </div>
+
+      <div class="form-group">
+        <label for="adressCity">Postal Code</label>
+        <input [(ngModel)]="application.persons[0].address.city" type="text" class="form-control" id="adressCity" placeholder="City">
+      </div>
+
+      <div class="form-group">
+        <label for="adressStreet">Street</label>
+        <input [(ngModel)]="application.persons[0].address.street" type="text" class="form-control" id="adressStreet" placeholder="Street">
+      </div>
+
+      <div class="form-group">
+        <label for="adressHouse">House</label>
+        <input [(ngModel)]="application.persons[0].address.house" type="text" class="form-control" id="adressHouse" placeholder="House">
+      </div>
+
+      <div class="form-group">
+        <label for="adressApartment">Apartment</label>
+        <input [(ngModel)]="application.persons[0].address.apartment" type="text" class="form-control" id="adressApartment" placeholder="Apartment">
+      </div>
+
+      <div class="panel-heading mb-3">Okres Ochrony</div>
+
+      <div class="form-group">
+        <label for="policyStart">Insurance Start</label>
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group" id="policyStart">
+              <input class="form-control" required  placeholder="yyyy-mm-dd"
+                     name="createdDate" ngbDatepicker #IStart="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="IStart.toggle()" type="button">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <i class="fab fa-font-awesome"></i>
+
+      <div class="form-group">
+        <label for="policyEnd">Insurance End</label>
+        <form class="form-inline disabled" >
+          <div class="form-group d-inline">
+            <div class="input-group" id="policyEnd">
+              <input class="form-control" required  placeholder="yyyy-mm-dd"
+                     name="createdDate" ngbDatepicker #IEnd="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" disabled (click)="IEnd.toggle()" type="button">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel-heading mb-3">Dane pojazdu</div>
+
+      <div class="form-group">
+        <label for="LicencePlateNumber">Licence plate number</label>
+        <input type="text" class="form-control" id="LicencePlateNumber" placeholder="Licence plate number">
+      </div>
+
+      <div class="form-group">
+        <label for="vin">Vin</label>
+        <input type="text" class="form-control" id="vin" placeholder="Vin">
+      </div>
+
+    </div>
+
+
+
+
+    <button type="submit"  class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
+      KUP POLISE &gt;
+    </button>
+
+
+  </div>
+</div>

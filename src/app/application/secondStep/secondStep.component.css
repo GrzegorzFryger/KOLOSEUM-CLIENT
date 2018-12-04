@@ -1,7 +1,7 @@
 
 .panel-heading {
-  color: #9b9a99;
-  border-bottom: 1px solid #696868;
+  color: #e67e22;
+  border-bottom: 1px solid #e67e22;
   background: 0 0;
   font-size: 20px;
   padding-left: 0!important;
@@ -94,7 +94,7 @@
 .button-nextStep {
   color: #000;
   font-weight: bold;
-  background-color: #2980b9;
+  background-color: #e67e22;
   padding: 22px 0 20px;
   height: 60px;
 }

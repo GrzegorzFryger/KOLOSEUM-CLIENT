@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationService} from './application.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ApplicationComponent implements OnInit {
   pickedDayOfBirth;
   pickedDrivingLicenseIssueDate;
 
-  constructor(private service: ApplicationService) {
+  constructor(private service: ApplicationService, private router: Router) {
   }
 
 
@@ -37,14 +38,15 @@ export class ApplicationComponent implements OnInit {
   }
 
 
-  calculatePrice() {
+  async calculatePrice() {
     this.service.register.vehicle = this.service.vehicle;
     if (this.service.register.persons.length === 0) {
       this.setDates();
       this.service.register.persons.push(this.service.person);
     }
 
-    this.service.calculatePriceCall();
+    await this.service.calculatePriceCall();
+    this.router.navigate(['application/second']);
 
   }
 

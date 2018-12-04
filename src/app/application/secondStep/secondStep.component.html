@@ -4,8 +4,8 @@
     <div class="col-sm-12">
 
 
-      <div class="card-columns" >
-        <div class="card mb-3" *ngFor="let riskVariant of application.riskVariants" [ngClass]="{'bg-light border-primary' : riskVariant.addedToCart}" style="min-width: 250px">
+      <div class="card-columns " >
+        <div class="card mb-3 shadow  bg-white rounded" *ngFor="let riskVariant of application.riskVariants" [ngClass]="{'bg-light border-primary' : riskVariant.addedToCart}" style="min-width: 250px">
           <div class="card-header" [ngClass]="{'text-primary' : riskVariant.addedToCart}">{{riskVariant.displayName}}</div>
           <div class="card-body">
             <p class="card-text">Cena: {{getPrice(riskVariant.premiumList)}}zł</p>
@@ -34,9 +34,9 @@
 
     </div>
 
-    <button (click)="getApplicaiotn()" class="btn">asd</button>
 
-    <button type="submit"  class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
+
+    <button type="submit" (click)="updateApplicaiton()"  class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
       PODAJ DANE DO POLISY &gt;
     </button>
 

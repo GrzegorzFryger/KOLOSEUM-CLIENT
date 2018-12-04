@@ -20,10 +20,12 @@ import {AuthGuard} from './auth.guard';
 import { TodosComponent } from './todos/todos.component';
 import {TodoService} from './todos/todo.service';
 import { SecondStepComponent } from './application/secondStep/secondStep.component';
+import { ThirdStepComponent } from './application/thirdStep/thirdSep.component';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
   {path: 'application/second', component: SecondStepComponent, canActivate: [AuthGuard]},
+  {path: 'application/third', component: ThirdStepComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserRegisterComponent},
   {path: 'todos', component: TodosComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     ApplicationComponent,
     UserRegisterComponent,
     TodosComponent,
-    SecondStepComponent
+    SecondStepComponent,
+    ThirdStepComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   providers: [
     ApplicationService,

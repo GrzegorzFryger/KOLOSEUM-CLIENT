@@ -1,7 +1,9 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InsuranceApplicaion} from '../../models/insurance-applicaion.model';
 import {ApplicationService} from '../application.service';
 import {PremiumList} from '../../models/premium-list.model';
+import {Risk} from '../../models/risk.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-second',
@@ -10,7 +12,7 @@ import {PremiumList} from '../../models/premium-list.model';
 })
 export class SecondStepComponent implements OnInit {
 
-  constructor(private applicationService: ApplicationService) {
+  constructor(private applicationService: ApplicationService, private router: Router) {
     this.applicationsService = this.applicationService;
   }
 
@@ -24,18 +26,14 @@ export class SecondStepComponent implements OnInit {
 
 
   ngOnInit() {
+    this.application = this.applicationsService.application;
     this.application.riskVariants.forEach(risk => {
-      if (risk.name === 'OC') {risk.addedToCart = true; }
+      if (risk.name === 'OC') {
+        risk.addedToCart = true;
+      }
     });
+    console.log(this.applicationsService.application);
     this.recalculateBaseOnInstaltment();
-  }
-
-  getApplicaiotn() {
-    this.applicationService.getCalculationById(5).subscribe(resp => {
-      this.application = resp;
-
-      this.ngOnInit();
-    });
   }
 
   getPrice(premiumList: PremiumList): number {
@@ -87,5 +85,21 @@ export class SecondStepComponent implements OnInit {
       }
     });
   }
+
+  updateApplicaiton() {
+    let risks = [];
+    this.application.riskVariants.forEach(risk => {
+      if (risk.addedToCart) {
+        risks.push(risk);
+      }
+    });
+    this.application.risks = risks;
+    this.applicationService.updateApplication(this.application).then(resp => {
+      this.applicationsService.application = resp;
+      this.router.navigate(['application/third']);
+    });
+
+  }
+
 
 }

@@ -1,1 +1,11 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+
+
+input[type=text], input[type=text]:focus, select, select:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  -webkit-transition: none!important;
+  transition: none!important;
+  border: 1px solid #e6e4e3;
+  text-overflow: ""!important;
+}

@@ -126,8 +126,8 @@ export class ApplicationService {
     }
   }
 
-  calculatePriceCall() {
-    this.http.post<InsuranceApplicaion>('http://localhost:8080/api/application', this.register).toPromise().then(resp => {
+  async calculatePriceCall() {
+    await this.http.post<InsuranceApplicaion>('http://localhost:8080/api/application', this.register).toPromise().then(resp => {
       this.application = resp;
       console.log(resp);
     });
@@ -139,4 +139,7 @@ export class ApplicationService {
   }
 
 
+  async updateApplication(application: InsuranceApplicaion): Promise<InsuranceApplicaion> {
+    return await this.http.put<InsuranceApplicaion>('http://localhost:8080/api/application/' + application.id, application).toPromise();
+  }
 }
