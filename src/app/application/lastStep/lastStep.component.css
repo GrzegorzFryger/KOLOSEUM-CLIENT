@@ -1,0 +1,16 @@
+.panel-heading h1  {
+  color: #ffc107;
+}
+
+.panel-heading h5  {
+  color: #ffc107;
+}
+
+.button-generate {
+  color: #000;
+  font-weight: bold;
+  padding: 20px 20px;
+  height: 60px;
+  margin-top: 50px;
+
+}

@@ -5,5 +5,7 @@ export class Vehicle {
   engineCapacity: string;
   type: string;
   name: string;
+  licencePlateNumber: string;
+  vin: string;
 
 }

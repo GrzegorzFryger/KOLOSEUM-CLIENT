@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="panel-heading text-center m-5">
+        <h1>Congratulations You Sell Policy</h1>
+        <h5>Number: {{insuranceApplication.number}}</h5>
+        <h5>Policy Value: {{insuranceApplication.totalPolicyValue}}zł</h5>
+      </div>
+
+      <div class="center-panel">
+        <div class="card float-left col-sm-5">
+          <img class="card-img-top" src="https://cdn2.iconfinder.com/data/icons/Matchbox-Car-Icons-Mac/512/Fiat.png"
+               alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Car data</h5>
+            <p class="card-text"><b>Production year:</b> {{insuranceApplication.vehicle.productionYear}}<br>
+              <b>Mark: </b>{{insuranceApplication.vehicle.mark}}<br>
+              <b>Model:</b> {{insuranceApplication.vehicle.model}}<br>
+              <b>Type:</b> {{insuranceApplication.vehicle.type}}<br>
+              <b></b> <br>
+
+            </p>
+          </div>
+        </div>
+
+        <div class="card float-right col-sm-5">
+          <img class="card-img-top" style=""
+               src="https://cdn0.iconfinder.com/data/icons/streamline-emoji-1/48/205-man-in-tuxedo-2-512.png"
+               alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Person Data</h5>
+            <p class="card-text">
+              <b>First Name </b>{{insuranceApplication.persons[0].firstName}}<br>
+              <b>Last Name </b>{{insuranceApplication.persons[0].lastName}}<br>
+              <b>Pesel: </b>{{insuranceApplication.persons[0].pesel}}<br>
+              <b>Postal Code: </b>{{insuranceApplication.persons[0].address.postalCode}}<br>
+              <b>City: </b>{{insuranceApplication.persons[0].address.city}}<br>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <button class="btn btn-warning button-generate">Generate Document</button>
+
+
+
+    </div>
+  </div>
+</div>

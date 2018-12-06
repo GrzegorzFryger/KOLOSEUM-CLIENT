@@ -6,6 +6,8 @@ export class Risk {
   sum: number;
   displayName: string;
   addedToCart = false;
+  startDate: Date;
+  endDate: Date;
 
 }
 

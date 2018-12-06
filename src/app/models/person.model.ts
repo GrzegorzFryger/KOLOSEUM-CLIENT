@@ -10,5 +10,5 @@ export class Person {
   firstName: string;
   lastName: string;
   pesel: string;
-  address: Address;
+  address: Address = new Address();
 }

@@ -94,6 +94,7 @@ export class SecondStepComponent implements OnInit {
       }
     });
     this.application.risks = risks;
+    this.application.totalPolicyValue = this.totalPrice;
     this.applicationService.updateApplication(this.application).then(resp => {
       this.applicationsService.application = resp;
       this.router.navigate(['application/third']);

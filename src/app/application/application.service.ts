@@ -135,11 +135,14 @@ export class ApplicationService {
 
   getCalculationById(id: number): Observable<InsuranceApplicaion> {
     return this.http.get<InsuranceApplicaion>('http://localhost:8080/api/application/' + id);
-
   }
 
 
   async updateApplication(application: InsuranceApplicaion): Promise<InsuranceApplicaion> {
     return await this.http.put<InsuranceApplicaion>('http://localhost:8080/api/application/' + application.id, application).toPromise();
+  }
+
+  async acceptApplication(application: InsuranceApplicaion): Promise<InsuranceApplicaion> {
+    return await this.http.post<InsuranceApplicaion>('http://localhost:8080/api/application/' + application.id + '/accept' , application).toPromise();
   }
 }

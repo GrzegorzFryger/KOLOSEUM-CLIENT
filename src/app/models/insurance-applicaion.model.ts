@@ -12,6 +12,7 @@ export class InsuranceApplicaion {
   state: string;
   vehicle: Vehicle;
   installmentAmount: number;
+  totalPolicyValue: number;
 
 
 }
