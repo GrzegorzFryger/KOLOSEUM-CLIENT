@@ -38,7 +38,14 @@
                     <p class="card-text"><b>State</b> {{todo.state}} </p>
                     <p class="card-text"><b>Last Modyfication</b> {{todo.lastModification}} </p>
                   </div>
-                  <div class="tab-pane fade" id="nav-contact{{todo.id}}" role="tabpanel" aria-labelledby="nav-contact-tab">...
+                  <div class="tab-pane fade"  id="nav-contact{{todo.id}}" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <div class="info-panel" *ngFor="let history of todo.toDoCardHistories">
+                      <p class="card-text"><b>Action: </b> {{history.action}}</p>
+                      <p class="card-text"><b>User: </b> {{history.modifiedBy}} <b>Set: </b> <b>  Title: </b> {{history.title}}  <b>Status: </b>{{history.state}}</p>
+                      <p class="card-text"><b>Text: </b> {{history.text}}</p>
+                      <p class="card-text"><b>When? : </b> {{history.modifiedDate}}</p>
+                      <hr>
+                    </div>
                   </div>
                 </div>
               </div>

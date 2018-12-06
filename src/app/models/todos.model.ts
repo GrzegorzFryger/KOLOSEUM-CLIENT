@@ -1,4 +1,5 @@
 import {ApplicationUser} from './application-user.model';
+import {TodoHistory} from './todoHistory.model';
 
 export class Todos {
   id: number;
@@ -9,4 +10,5 @@ export class Todos {
   state: string;
   createdDate: Date;
   lastModification: Date;
+  toDoCardHistories: Array<TodoHistory>;
 }
