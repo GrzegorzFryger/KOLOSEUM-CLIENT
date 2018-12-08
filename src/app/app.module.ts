@@ -22,6 +22,7 @@ import {TodoService} from './todos/todo.service';
 import { SecondStepComponent } from './application/secondStep/secondStep.component';
 import { ThirdStepComponent } from './application/thirdStep/thirdSep.component';
 import { LastStepComponent } from './application/lastStep/lastStep.component';
+import {HomeService} from './home/home.service';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
   providers: [
     ApplicationService,
     UserRegisterService,
+    HomeService,
     TodoService,
     AuthGuard,
     TodosComponent,

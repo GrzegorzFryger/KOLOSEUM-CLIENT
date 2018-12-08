@@ -1,6 +1,7 @@
 import {Person} from './person.model';
 import {Vehicle} from './vehicle.model';
 import {Risk} from './risk.model';
+import {ApplicationUser} from './application-user.model';
 
 export class InsuranceApplicaion {
   id: number;
@@ -13,6 +14,7 @@ export class InsuranceApplicaion {
   vehicle: Vehicle;
   installmentAmount: number;
   totalPolicyValue: number;
+  seller: ApplicationUser;
 
 
 }

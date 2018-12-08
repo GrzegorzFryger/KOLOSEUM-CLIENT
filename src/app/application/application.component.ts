@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApplicationService} from './application.service';
 import {Router} from '@angular/router';
+import {UserRegisterService} from '../user-register/user-register.service';
 
 
 @Component({

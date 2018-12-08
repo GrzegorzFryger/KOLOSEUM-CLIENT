@@ -21,12 +21,11 @@ export class TodoService {
     });
   }
 
- async addTodo(todo: Todos) {
-   this.applicationUser = this.userService.getUserObjet();
+  async addTodo(todo: Todos) {
+    this.applicationUser = this.userService.getUserObjet();
     await this.http.post<Todos>('http://localhost:8080/api/todo', todo).toPromise().then(resp => {
       this.getAllTodosByUser(this.applicationUser.id);
       console.log(resp);
     });
   }
-
 }

@@ -5,6 +5,7 @@ import {Register} from '../models/register.model';
 import {Person} from '../models/person.model';
 import {InsuranceApplicaion} from '../models/insurance-applicaion.model';
 import {Observable} from 'rxjs/Observable';
+import {UserRegisterService} from '../user-register/user-register.service';
 
 @Injectable()
 export class ApplicationService {
@@ -21,7 +22,7 @@ export class ApplicationService {
 
   register: Register = new Register();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserRegisterService) {
     this.getVehicles('productionYear');
     this.productionYears.sort();
   }
@@ -127,6 +128,7 @@ export class ApplicationService {
   }
 
   async calculatePriceCall() {
+    this.register.seller = this.userService.getUserObjet();
     await this.http.post<InsuranceApplicaion>('http://localhost:8080/api/application', this.register).toPromise().then(resp => {
       this.application = resp;
       console.log(resp);
