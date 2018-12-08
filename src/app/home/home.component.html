@@ -41,13 +41,16 @@
               </thead>
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate === today">
-                <th scope="row">{{application.number}}</th>
+                <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
                 <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
-                <td>{{application.totalPolicyValue}}zł</td>
+                <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>
                 <td>{{application.registerDate}}</td>
               </tr>
+
+
+
               </tbody>
             </table>
 
@@ -70,10 +73,10 @@
               </thead>
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate >= days7">
-                <th scope="row">{{application.number}}</th>
+                <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
                 <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
-                <td>{{application.totalPolicyValue}}zł</td>
+                <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>
                 <td>{{application.registerDate}}</td>
               </tr>
@@ -97,10 +100,10 @@
               </thead>
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate >= days30">
-                <th scope="row">{{application.number}}</th>
+                <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
                 <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
-                <td>{{application.totalPolicyValue}}zł</td>
+                <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>
                 <td>{{application.registerDate}}</td>
               </tr>
@@ -110,10 +113,78 @@
           </div>
         </div>
 
+        <div *ngIf="showPolicyDetailsWindows" class="col-sm-12">
+          <div class="card">
+            <h5 class="card-header text-center">Details of {{selectedApplication.number}}</h5>
+            <div class="card-body">
+
+              <h4><span class="badge badge-warning w-100">Basics information</span></h4>
+              <div class="card-text col-sm-12 row">
+                <div class="col-sm-3"><b>Register Date</b> <br>{{selectedApplication.registerDate}}</div>
+                <div class="col-sm-3"><b>Installment Amount</b> <br>{{selectedApplication.installmentAmount}}</div>
+                <div class="col-sm-3"><b>State</b> <br>{{selectedApplication.state}}</div>
+                <div class="col-sm-3"><b>Number</b> <br>{{selectedApplication.number}}</div>
+              </div>
+
+              <h4><span class="badge badge-warning w-100" *ngIf="selectedApplication.risks.length !== 0">Risks</span></h4>
+
+                <div class="card-text col-sm-12 row">
+                  <div class="col-sm-3" *ngFor="let risk of selectedApplication.risks">
+                    <b>{{risk.name}}</b> <br>{{getPrice(risk.premiumList)}}zł
+                  </div>
+                </div>
+
+              <h4><span class="badge badge-warning w-100">Seller</span></h4>
+              <div class="card-text col-sm-12 row">
+                <div class="col-sm-3"><b>First Name</b> <br>{{selectedApplication.seller.firstName}}</div>
+                <div class="col-sm-3"><b>Last Name</b> <br>{{selectedApplication.seller.lastName}}</div>
+                <div class="col-sm-3"><b>Email</b> <br>{{selectedApplication.seller.email}}</div>
+              </div>
+
+              <h4><span class="badge badge-warning w-100">Customer</span></h4>
+              <div class="card-text col-sm-12 row">
+                <div class="col-sm-3"><b>First Name</b> <br>{{selectedApplication.persons[0].firstName}}</div>
+                <div class="col-sm-3"><b>Gearbox Count</b> <br>{{selectedApplication.persons[0].lastName}}</div>
+                <div class="col-sm-3"><b>Pesel</b> <br>{{selectedApplication.persons[0].pesel}}</div>
+                <div class="col-sm-3"><b>Postal Code</b> <br>{{selectedApplication.persons[0].address.postalCode}}</div>
+                <div class="col-sm-3"><b>City</b> <br>{{selectedApplication.persons[0].address.city}}</div>
+                <div class="col-sm-3"><b>Street</b> <br>{{selectedApplication.persons[0].address.street}}</div>
+                <div class="col-sm-3"><b>House</b> <br>{{selectedApplication.persons[0].address.house}}</div>
+                <div class="col-sm-3"><b>Apartment</b> <br>{{selectedApplication.persons[0].address.apartment}}</div>
+                <div class="col-sm-3"><b>Day Of Birth</b> <br>{{selectedApplication.persons[0].dayOfBirth}}</div>
+                <div class="col-sm-3"><b>Driving License Issue Date</b> <br>{{selectedApplication.persons[0].drivingLicenseIssueDate}}</div>
+              </div>
+
+              <h4><span class="badge badge-warning w-100">Car</span></h4>
+              <div class="card-text col-sm-12 row">
+                <div class="col-sm-3"><b>Mark</b> <br>{{selectedApplication.vehicle.mark}}</div>
+                <div class="col-sm-3"><b>Model</b><br>{{selectedApplication.vehicle.model}}</div>
+                <div class="col-sm-3"><b>Rok produkcji</b><br>{{selectedApplication.vehicle.productionYear}}</div>
+                <div class="col-sm-3"><b>Vin</b><br>{{selectedApplication.vehicle.vin}}</div>
+                <div class="col-sm-3"><b>Licence Plate</b> <br>{{selectedApplication.vehicle.licencePlateNumber}}</div>
+                <div class="col-sm-3"><b>Engine Capacity</b><br>{{selectedApplication.vehicle.engineCapacity}}</div>
+                <div class="col-sm-3"><b>Type</b><br>{{selectedApplication.vehicle.type}}</div>
+                <div class="col-sm-3"><b>Load Weight</b><br>{{selectedApplication.vehicle.loadWeight}}</div>
+                <div class="col-sm-3"><b>Engine power</b> <br>{{selectedApplication.vehicle.enginePower}}</div>
+                <div class="col-sm-3"><b>Cylinders Count</b><br>{{selectedApplication.vehicle.cylindersCount}}</div>
+                <div class="col-sm-3"><b>Seat Count</b><br>{{selectedApplication.vehicle.seatCount}}</div>
+                <div class="col-sm-3"><b>Doors Count</b><br>{{selectedApplication.vehicle.doorsCount}}</div>
+                <div class="col-sm-3"><b>Gearbox Count</b> <br>{{selectedApplication.vehicle.gearboxCount}}</div>
+                <div class="col-sm-3"><b>Gearbox Type</b><br>{{selectedApplication.vehicle.gearboxType}}</div>
+                <div class="col-sm-3"><b>Engine HPower</b><br>{{selectedApplication.vehicle.engineHPower}}</div>
+                <div class="col-sm-3"><b>Fuel Type</b><br>{{selectedApplication.vehicle.fuelType}}</div>
+                <div class="col-sm-3"><b>Body Type</b> <br>{{selectedApplication.vehicle.bodyType}}</div>
+                <div class="col-sm-3"><b>Vehicle Value</b><br>{{selectedApplication.vehicle.vehicleValue}}</div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
 
       </div>
-
-
 
     </div>
   </div>

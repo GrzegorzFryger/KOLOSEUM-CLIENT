@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from './home.service';
 import {InsuranceApplicaion} from '../models/insurance-applicaion.model';
+import {PremiumList} from '../models/premium-list.model';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ export class HomeComponent implements OnInit {
 
   userApplications: Array<InsuranceApplicaion>;
   isApplicationFromToday: boolean;
-  today: Date = new Date();
-  days7: Date;
-  days30: Date;
+  today;
+  days7;
+  days30;
+  showPolicyDetailsWindows: boolean = false;
+  selectedApplication: InsuranceApplicaion;
 
   constructor(private homeService: HomeService) {
   }
@@ -47,6 +50,34 @@ export class HomeComponent implements OnInit {
         }
       });
     return isAny;
+  }
+
+  showPolicyDetails(applicatonNumber: number) {
+    this.showPolicyDetailsWindows = !this.showPolicyDetailsWindows;
+    this.userApplications.forEach(userApp => {
+      if (userApp.number === applicatonNumber) {
+        this.selectedApplication = userApp;
+      }
+    });
+  }
+
+  getPrice(premiumList: PremiumList): number {
+    let total = 0;
+    if (this.selectedApplication.installmentAmount === 1) {
+      premiumList.one.forEach(s => total += s);
+
+    }
+    if (this.selectedApplication.installmentAmount === 2) {
+      premiumList.two.forEach(s => total += s);
+    }
+    if (this.selectedApplication.installmentAmount === 4) {
+      premiumList.four.forEach(s => total += s);
+    }
+    if (this.selectedApplication.installmentAmount === 12) {
+      premiumList.twelve.forEach(s => total += s);
+    }
+
+    return total;
   }
 
 

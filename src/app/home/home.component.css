@@ -5,4 +5,6 @@
 .policy-box tbody {
   font-size: 90%;
 }
-
+.col-sm-3 {
+  text-align: center;
+}

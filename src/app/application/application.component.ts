@@ -24,6 +24,11 @@ export class ApplicationComponent implements OnInit {
     this.registerService = this.service;
     this.pickedDayOfBirth = {year: 1990, month: 1, day: 1};
     this.pickedDrivingLicenseIssueDate = {year: 2008, month: 1, day: 1};
+    this.service.marks = [];
+    this.service.models = [];
+    this.service.engineCapacities = [];
+    this.service.types = [];
+    this.service.names = [];
   }
 
   setDates() {
