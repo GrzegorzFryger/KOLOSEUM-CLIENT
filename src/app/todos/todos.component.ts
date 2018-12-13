@@ -14,6 +14,7 @@ export class TodosComponent implements OnInit {
   applicationUser: ApplicationUser;
   usersService: UserRegisterService;
   todosService: TodoService;
+  checkboxValue: boolean;
 
 
   constructor(private todoService: TodoService, private userService: UserRegisterService) {

@@ -13,38 +13,38 @@
       <div class="container">
 
         <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let todo of todosService.userTodos">
 
-              <span class="round">
-                <input type="checkbox" id="checkbox" />
-                <label for="checkbox"></label>
-              </span>
+              <input [(ngModel)]="checkboxValue" type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox">
+              <label for="checkboxG4" class="css-label"></label>
 
-              <h6>A Basic Panel</h6>
+
+              <a style="cursor: pointer;" >
+              <h6 [ngClass]="checkboxValue ? 'strikethrough' : 'null'">
+                {{todo.title}}
+              </h6>
+              </a>
             </li>
 
-          <li class="list-group-item d-flex justify-content-between align-items-center">
 
-              <span class="round">
-                <input type="checkbox" id="checkbox2" />
-                <label for="checkbox"></label>
-              </span>
 
-            <h6>A Basic Panel</h6>
+          <li class="list-group-item d-flex justify-content-between align-items-center mb-3">
+
+            <input type="text" class="text-line" />
+            <input type="text" class="text-line" />
           </li>
-
-
-
-
         </ul>
 
+        <hr>
       </div>
-
-
     </div>
 
 
     <div class="col-lg-6">
+      <div class="container">
+       
+      </div>
 
     </div>
 
