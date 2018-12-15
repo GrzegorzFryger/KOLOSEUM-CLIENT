@@ -21,6 +21,9 @@ export class UserRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.userService = this.service;
+    if (this.service.isUserAuthorised()) {
+      this.router.navigate(['']);
+    }
   }
 
   registerUser() {

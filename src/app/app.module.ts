@@ -23,6 +23,7 @@ import { SecondStepComponent } from './application/secondStep/secondStep.compone
 import { ThirdStepComponent } from './application/thirdStep/thirdSep.component';
 import { LastStepComponent } from './application/lastStep/lastStep.component';
 import {HomeService} from './home/home.service';
+import { UsersComponent } from './users/users.component';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   {path: 'application/third', component: ThirdStepComponent, canActivate: [AuthGuard]},
   {path: 'application/last', component: LastStepComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserRegisterComponent},
+  {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'todos', component: TodosComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
 
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     TodosComponent,
     SecondStepComponent,
     ThirdStepComponent,
-    LastStepComponent
+    LastStepComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

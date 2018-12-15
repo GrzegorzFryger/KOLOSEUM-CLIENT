@@ -25,6 +25,9 @@
             <a class="dropdown-item" routerLink="/todos" (click)="openModal(addTask)">Add task</a>
           </div>
         </li>
+        <li *ngIf="applicationUserService.isUserHasRole('ROLE_ADMIN')" class="nav-item active">
+          <a class="nav-link" routerLink="/users">Users</a>
+        </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">

@@ -40,5 +40,16 @@ export class UserRegisterService {
       return this.loginedUser.applicationUser;
     }
   }
+
+  isUserHasRole(roleInput: string): boolean {
+    let isUserHasRole = false;
+    this.loginedUser.applicationUser.roles.forEach(role => {
+      if (role.name === roleInput) {
+        isUserHasRole = true;
+      }
+    });
+
+    return isUserHasRole;
+  }
 }
 
