@@ -1,0 +1,33 @@
+.list-group-item img {
+  max-width: 15%;
+}
+
+/*input[type=text] {*/
+  /*width: 130px;*/
+  /*-webkit-transition: width 0.4s ease-in-out;*/
+  /*transition: width 0.4s ease-in-out;*/
+/*}*/
+
+/*!* When the input field gets focus, change its width to 100% *!*/
+/*input[type=text]:focus {*/
+  /*width: 100%;*/
+/*}*/
+
+
+
+.list-group .search-type {
+
+  padding: 6px 4px;
+  font-size: 14px;
+}
+
+.card-text {
+
+  font-size: 16px;
+
+}
+
+li:hover {
+  background-color: #ffc107;
+}
+

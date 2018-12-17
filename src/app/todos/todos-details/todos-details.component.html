@@ -1,0 +1,92 @@
+<div class="card-body ">
+  <div class="nav nav-pills mb-3 shadow p-3"><h2>Title : {{todoCard?.title}}</h2></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h5>Text:</h5>
+      <p class="card-text">{{todoCard?.text}}</p>
+    </li>
+  </ul>
+
+</div>
+
+<ul class="list-group ">
+
+  <div class="list-group-item">
+
+    <form class="form-group" #textForm="ngForm" *ngIf="clicked">
+      <label for="text">Edit text card: </label>
+      <textarea class="form-control" ngModel name="text" id="text" rows="3">{{todoCard?.text}}</textarea>
+    </form>
+
+
+    <div class="col-lg-12">
+      <button class="btn btn-primary btn-lg btn-block btn-warning" type="submit"
+
+              (click)="submitText()" (click)="clicked = !clicked">
+
+        {{clicked ? 'Add text' : 'Edit text'}}
+      </button>
+    </div>
+  </div>
+</ul>
+
+
+<div class="card-body">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab"
+         aria-controls="nav-user" aria-selected="true">User</a>
+      <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+         aria-controls="nav-home" aria-selected="true">History</a>
+    </div>
+  </nav>
+
+
+  <div class="tab-content" id="nav-tabContent">
+
+    <div class="tab-pane fade show active " id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
+
+      <div class="tab-content mt-3">
+
+        <div class="list-group-item">
+
+          <form>
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Type name</span>
+              </div>
+              <input type="text" class="form-control"  (keyup)="searchUsers($event)" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <ul class="list-group" *ngFor="let data of users; let id = index">
+              <li style="cursor: pointer;" class="list-group-item d-flex justify-content-between align-items-center search-type"
+                  (click)="selectedUser(id)">
+                <a> {{data.firstName}} {{data.lastName}} </a>
+                <span class="badge badge-primary badge-pill">{{id}}</span>
+              </li>
+            </ul>
+        </form>
+      </div>
+
+
+      </div>
+    </div>
+
+    <div class="tab-pane fade sho " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="tab-content mt-3" *ngFor="let history of todoCard?.toDoCardHistories">
+        <p class="card-text"><b>Action:</b> {{history.action}}</p>
+        <p class="card-text"><b>User:</b> {{history.modifiedBy}}</p>
+        <p class="card-text"><b>Text:</b> {{history.text}}</p>
+        <p class="card-text"><b>When? </b> {{history.modifiedDate}}</p>
+        <hr>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+

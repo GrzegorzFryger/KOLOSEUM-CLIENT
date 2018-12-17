@@ -41,7 +41,7 @@
               </thead>
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate === today">
-                <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
+                <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}} </th>
                 <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
                 <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>

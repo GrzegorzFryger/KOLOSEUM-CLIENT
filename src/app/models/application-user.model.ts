@@ -9,4 +9,6 @@ export class ApplicationUser {
   email: string;
   password: string;
   roles: Array<RoleModel>;
+
+
 }

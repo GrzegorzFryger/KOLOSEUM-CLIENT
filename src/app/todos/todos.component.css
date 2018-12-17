@@ -1,17 +1,97 @@
-.fix-body-scroll {
-  overflow-y: auto;
-  height: 900px;
-  display: flex;
+input[type=checkbox].css-checkbox {
+  position:absolute;
+  z-index:-1000;
+  left:-1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height:1px; width:1px;
+  margin:-1px; padding:0; border:0;
 }
 
-.todoList-wrapper {
-  display: inline-block;
-  max-height: 100%;
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left:33px;
+  height:28px;
+  display:inline-block;
+  line-height:28px;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  font-size:28px;
+  vertical-align:middle;
+  cursor:pointer;
+
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -28px;
+}
+
+label.css-label {
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_d3637c26b7bff4db3158e6ce16569a9e.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 
-.table-fixed {
-  width: 100%;
-  background-color: #f3f3f3;
+input[type=checkbox].css-checkbox:checked + h6.css-label2{
+
+  text-decoration: line-through;
 }
+
+.list-group > .list-group-item {
+  border-left: 0;
+  border-right: 0;
+}
+
+.text-line {
+  background-color: transparent;
+  /*color: #eeeeee;*/
+  outline: none;
+  /*outline-style: none;*/
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #eeeeee 1px;
+  padding: 3px 10px;
+}
+
+/*div[type="card-active"]:hover {*/
+  /*background-color: #ffc107;*/
+/*}*/
+
+p.todo-card-text { font-size: 12px}
+
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 3px 0px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.42857;
+}
+
+
+/*div.todocard {*/
+
+  /*padding-top: 20%;*/
+/*}*/
+
+/*.affix {*/
+  /*top: 20px;*/
+  /*z-index: 9999 !important;*/
+/*}*/
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 245px;
+
+}
+
 
