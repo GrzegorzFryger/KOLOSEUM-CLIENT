@@ -25,8 +25,7 @@ export class TodosDetailsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private todService: TodoService, private service: TodoService,
               private userService: ApplicationUserService) {
-
-
+    this.clicked = false;
   }
 
   ngOnInit() {
@@ -39,9 +38,6 @@ export class TodosDetailsComponent implements OnInit {
           );
         }
       );
-
-    this.clicked = false;
-
   }
 
   submitText() {
@@ -73,8 +69,10 @@ export class TodosDetailsComponent implements OnInit {
   }
 
   selectedUser(id: number) {
+
     this.todService.moveCardToOtherUser(this.todoCard.id, this.users[id].id);
     this.todService.addToDoCardtoShare(this.todoCard);
+
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

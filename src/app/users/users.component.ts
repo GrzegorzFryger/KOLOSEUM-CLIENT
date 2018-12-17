@@ -22,13 +22,13 @@ export class UsersComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.http.get<ApplicationUser>('http://localhost:8080/api/user/users').subscribe(resp => {
+    this.http.get<ApplicationUser[]>('http://localhost:8080/api/user/users').subscribe(resp => {
       this.allUsers = resp;
     });
   }
 
   getAvailableRoles() {
-    this.http.get<RoleModel>('http://localhost:8080/api/tools/roles').subscribe(resp => {
+    this.http.get<RoleModel[]>('http://localhost:8080/api/tools/roles').subscribe(resp => {
       this.availableRoles = resp;
     });
   }

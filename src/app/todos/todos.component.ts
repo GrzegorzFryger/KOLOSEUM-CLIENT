@@ -46,6 +46,7 @@ export class TodosComponent implements OnInit {
       }
     );
 
+
     this.todoService.toDoCardShared.subscribe(resp => {
       this.todosList.splice(this.todosList.indexOf(resp), 1);
     });

@@ -28,7 +28,7 @@ export class TodoService {
   }
 
   moveCardToOtherUser(cardId: number, userId: number ) {
-    this.http.post<any>('http://localhost:8080/api/todo/moveCard', {cardId: cardId, idUserToMove: cardId} ).toPromise().then(resp => {
+    this.http.post<any>('http://localhost:8080/api/todo/moveCard', {cardId: cardId, idUserToMove: userId} ).toPromise().then(resp => {
       console.log(resp);
     });
   }
