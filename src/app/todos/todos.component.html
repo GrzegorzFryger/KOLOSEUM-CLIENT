@@ -3,52 +3,80 @@
 
 
 
-    <div class="col-lg-6">
-      <div class="container">
-         <h2 class="nav nav-pills mb-3 shadow p-3">Moja Lista</h2>
-      </div>
 
-      <hr>
+      <div class="col-lg-6">
+        <div class="container">
+          <h2 class="nav nav-pills mb-3 shadow p-3">Moja Lista</h2>
+        </div>
 
-      <div class="container">
+        <hr>
+        <h5>Active task: </h5>
 
-        <ul class="list-group list-group-flush mb-3">
-            <li class="list-group-item d-flex justify-content-between align-items-center"
-                *ngFor="let todo of todosService.userTodos">
-
-              <input [(ngModel)]="checkboxValue" type="checkbox" name="checkboxG4" id="checkboxG4" class="css-checkbox">
-              <label for="checkboxG4" class="css-label"></label>
-
-
-              <a style="cursor: pointer;" >
-              <h6 [ngClass]="checkboxValue ? 'strikethrough' : 'null'">
-                {{todo.title}}
-              </h6>
+        <ul class="list-group list-group-flush">
+          <div style="max-height: 50px;" class="list-group-item d-flex justify-content-between align-items-center"
+               *ngFor="let data of todosList ; let i = index"
+               [routerLink]="[data.id]"
+               routerLinkActive="active">
+            <div class="col-lg-2">
+              <input type="checkbox" (change)="changeStateToDone(i, $event.target.checked)"
+                     name="checkboxG4" id="checkbox{{data.id}}" class="css-checkbox">
+              <label for="checkbox{{data.id}}" class="css-label"></label>
+            </div>
+            <div class="col-lg-10" type="card-active">
+              <a style="cursor: pointer;">
+                <p class="text-right">{{data.title}}</p>
               </a>
-            </li>
+            </div>
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="col-lg-4">
+              <button class="btn btn-warning btn-circle btn-lg" (click)="addNewCard()" type="submit">
+               +
+              </button>
+            </div>
+            <div class="col-lg-8">
+              <form class="form-group" (ngSubmit)="addNewCard()" #toDoForm="ngForm">
+                <input id="title" ngModel name="title" type="text" class="text-line" placeholder="Enter title" >
+              </form>
+            </div>
+          </div>
 
 
+        </ul>
 
-          <li class="list-group-item d-flex justify-content-between align-items-center mb-3">
+        <hr>
+        <h5>Done task : </h5>
 
-            <input type="text" class="text-line" />
-            <input type="text" class="text-line" />
-          </li>
+        <ul class="list-group list-group-flush">
+          <div class="list-group-item d-flex justify-content-between align-items-center"
+               *ngFor="let done of todoListDOne; let i = index"
+               [routerLink]="[done.id]">
+
+            <div class="col-lg-2">
+              <input [checked]="(done.state == 'DONE') ? true : false" (change)="changeStateToDone(i, $event.target.checked)" type="checkbox"
+                     name="checkboxG4" id="checkbox{{i}}}" class="css-checkbox">
+              <label for="checkbox{{i}}}" class="css-label"></label>
+            </div>
+            <div class="col-lg-10" type="card-done">
+              <a style="cursor: pointer;">
+                <p class="text-right">{{done.title}}</p>
+              </a>
+            </div>
+          </div>
         </ul>
 
         <hr>
       </div>
-    </div>
 
-
-    <div class="col-lg-6">
-      <div class="container">
-       
+      <div class="col-lg-6 todocard">
+        <div class="card rounded border border-warning sticky">
+          <router-outlet></router-outlet>
+        </div>
       </div>
 
+
     </div>
 
 
-  </div>
 
-</div>
+
