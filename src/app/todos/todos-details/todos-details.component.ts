@@ -6,6 +6,7 @@ import {NgForm} from '@angular/forms';
 import {ToDoUpdate} from '../../models/toDoUpdate.model';
 import {ApplicationUserService} from './application-user.service';
 import {ApplicationUser} from '../../models/application-user.model';
+import {activateRoutes} from '@angular/router/src/operators/activate_routes';
 
 @Component({
   selector: 'app-todos-details',
@@ -74,6 +75,7 @@ export class TodosDetailsComponent implements OnInit {
   selectedUser(id: number) {
     this.todService.moveCardToOtherUser(this.todoCard.id, this.users[id].id);
     this.todService.addToDoCardtoShare(this.todoCard);
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
 
