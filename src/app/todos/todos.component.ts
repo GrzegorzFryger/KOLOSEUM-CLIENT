@@ -85,18 +85,12 @@ export class TodosComponent implements OnInit {
 
     const newToDO = new Todos();
     newToDO.title = this.newCardForm.value.title;
-    this.addTodo(newToDO);
-    this.todosList.push(newToDO);
-
+    this.todoService.addTodo(newToDO).subscribe(resp => {
+      this.todosList.push(resp);
+    });
     this.newCardForm.onReset();
   }
 
-  // to refactor - move to service
-  addTodo(todo: Todos) {
-    this.applicationUser = this.usersService.getUserObjet();
-    todo.userId = this.applicationUser.id;
-    this.todoService.addTodo(todo);
-  }
 
 
 }

@@ -14,6 +14,12 @@ export class TodoService {
   private toDoCardSharedSource = new Subject<Todos>();
   toDoCardShared: Observable<Todos>;
 
+  data: {
+    title: string,
+    text: string,
+    userId: number
+  }
+
   userTodos: Todos[] = [];
   applicationUser: ApplicationUser;
 
@@ -53,11 +59,9 @@ export class TodoService {
     return this.http.put<Todos>('http://localhost:8080/api/todo', todo);
   }
 
-  async addTodo(todo: Todos) {
-    this.applicationUser = this.userService.getUserObjet();
-    await this.http.post<Todos>('http://localhost:8080/api/todo', todo).toPromise().then(resp => {
-      this.getAllTodosByUser(this.applicationUser.id);
-      console.log(resp);
-    });
+   addTodo(todo: Todos): Observable<Todos> {
+    return this.http.post<Todos>('http://localhost:8080/api/todo', { title: todo.title,
+      text: todo.text, userId: this.userService
+        .getUserObjet().id });
   }
 }

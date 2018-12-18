@@ -59,7 +59,7 @@ export class TodosDetailsComponent implements OnInit {
   searchUsers(event: any) {
     this.values = event.target.value;
 
-    if (this.values.length > 2) {
+    if (this.values.length > 3) {
       this.userService.getAllPersonByName(this.values).subscribe(
       resp => {
         this.users = resp;
