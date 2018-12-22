@@ -34,7 +34,7 @@
 <div class="card-body">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab " *ngIf="todoCard.state !== 'DONE'"
+      <a class="nav-item nav-link active" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab " *ngIf="todoCard.state !== 'DONE'"
          aria-controls="nav-user" aria-selected="true">User</a>
       <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
          aria-controls="nav-home" aria-selected="true">History</a>
@@ -44,10 +44,9 @@
 
   <div class="tab-content" id="nav-tabContent">
 
-    <div class="tab-pane fade show active " id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab" *ngIf="todoCard.state !== 'DONE'">
+    <div class="tab-pane fade show active" id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab" *ngIf="todoCard.state !== 'DONE'">
 
       <div class="tab-content mt-3" >
-
         <div class="list-group-item">
 
           <form>
@@ -59,9 +58,9 @@
             </div>
             <ul class="list-group" *ngFor="let data of users; let id = index">
               <li style="cursor: pointer;" class="list-group-item d-flex justify-content-between align-items-center search-type list-users"
-                  (click)="selectedUser(id)">
+                  (click)="selectedUser(id)" *ngIf="data.id != applicationUser.id">
                 <a> {{data.firstName}} {{data.lastName}} </a>
-                <span class="badge badge-primary badge-pill">{{id}}</span>
+                <span class="badge badge-primary badge-pill">{{id +1}}</span>
               </li>
             </ul>
         </form>
@@ -76,7 +75,7 @@
         <p class="card-text"><b>Action:</b> {{history.action}}</p>
         <p class="card-text"><b>User:</b> {{history.modifiedBy}}</p>
         <p class="card-text"><b>Text:</b> {{history.text}}</p>
-        <p class="card-text"><b>When? </b> {{history.modifiedDate}}</p>
+        <p class="card-text"><b>When: </b> {{history.modifiedDate}}</p>
         <hr>
 
       </div>

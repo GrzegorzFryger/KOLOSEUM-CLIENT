@@ -4,9 +4,8 @@ import {Todos} from '../../models/todos.model';
 import {TodoService} from '../todo.service';
 import {NgForm} from '@angular/forms';
 import {ToDoUpdate} from '../../models/toDoUpdate.model';
-import {ApplicationUserService} from './application-user.service';
 import {ApplicationUser} from '../../models/application-user.model';
-import {activateRoutes} from '@angular/router/src/operators/activate_routes';
+import {UserRegisterService} from '../../user-register/user-register.service';
 
 @Component({
   selector: 'app-todos-details',
@@ -22,9 +21,10 @@ export class TodosDetailsComponent implements OnInit {
   users: ApplicationUser[];
   clicked: boolean;
   values = '';
+  applicationUser: ApplicationUser;
 
   constructor(private router: Router, private route: ActivatedRoute, private todService: TodoService, private service: TodoService,
-              private userService: ApplicationUserService) {
+              private userService: UserRegisterService) {
     this.clicked = false;
   }
 
@@ -38,6 +38,8 @@ export class TodosDetailsComponent implements OnInit {
           );
         }
       );
+
+    this.applicationUser = this.userService.getUserObjet();
   }
 
   submitText() {
@@ -59,7 +61,7 @@ export class TodosDetailsComponent implements OnInit {
   searchUsers(event: any) {
     this.values = event.target.value;
 
-    if (this.values.length > 2) {
+    if (this.values.length >= 2) {
       this.userService.getAllPersonByName(this.values).subscribe(
       resp => {
         this.users = resp;

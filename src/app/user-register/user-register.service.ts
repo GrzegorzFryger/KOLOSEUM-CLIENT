@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {ApplicationUser} from '../models/application-user.model';
 import {LoginUserModel} from '../models/login-user.model';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/index';
 
 @Injectable()
 export class UserRegisterService {
@@ -50,6 +51,11 @@ export class UserRegisterService {
     });
 
     return isUserHasRole;
+  }
+
+  getAllPersonByName( value: string): Observable<ApplicationUser[]> {
+    let param = new HttpParams().set('firstName', value);
+    return this.http.get<ApplicationUser[]>('http://localhost:8080/api/user/search/like', {params: param } );
   }
 }
 

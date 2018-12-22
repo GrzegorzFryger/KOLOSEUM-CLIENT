@@ -53,11 +53,9 @@ export class TodoService {
     return this.http.put<Todos>('http://localhost:8080/api/todo', todo);
   }
 
-  async addTodo(todo: Todos) {
+  async addTodo(todo: Todos): Promise<Todos> {
     this.applicationUser = this.userService.getUserObjet();
-    await this.http.post<Todos>('http://localhost:8080/api/todo', todo).toPromise().then(resp => {
-      this.getAllTodosByUser(this.applicationUser.id);
-      console.log(resp);
-    });
+    todo.userId = this.applicationUser.id;
+    return await this.http.post<Todos>('http://localhost:8080/api/todo', todo).toPromise();
   }
 }

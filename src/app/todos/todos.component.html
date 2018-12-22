@@ -17,6 +17,7 @@
                *ngFor="let data of todosList ; let i = index"
                [routerLink]="[data.id]"
                routerLinkActive="active">
+            {{data.id}}
             <div class="col-lg-2">
               <input type="checkbox" (change)="changeStateToDone(i, $event.target.checked)"
                      name="checkboxG4" id="checkbox{{data.id}}" class="css-checkbox">
@@ -29,14 +30,14 @@
             </div>
           </div>
           <div class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="col-lg-4">
-              <button class="btn btn-warning btn-circle btn-lg" (click)="addNewCard()" type="submit">
+            <div class="col-lg-4" >
+              <button class="btn btn-warning btn-circle btn-lg" [disabled]="newCardForm.value.title == null"  (click)="addNewCard()" type="submit">
                +
               </button>
             </div>
             <div class="col-lg-8">
               <form class="form-group" (ngSubmit)="addNewCard()" #toDoForm="ngForm">
-                <input id="title" ngModel name="title" type="text" class="text-line" placeholder="Enter title" >
+                <input id="title" ngModel name="title" type="text" [(ngModel)]="newCardForm.value.title" class="text-line" placeholder="Enter title" >
               </form>
             </div>
           </div>

@@ -23,7 +23,6 @@ import { LastStepComponent } from './application/lastStep/lastStep.component';
 import {HomeService} from './home/home.service';
 import { UsersComponent } from './users/users.component';
 import { TodosDetailsComponent } from './todos/todos-details/todos-details.component';
-import {ApplicationUserService} from './todos/todos-details/application-user.service';
 
 
 
@@ -67,7 +66,6 @@ const appRoutes: Routes = [
   ],
   providers: [
     ApplicationService,
-    ApplicationUserService,
     UserRegisterService,
     HomeService,
     TodoService,
