@@ -24,11 +24,11 @@ import {HomeService} from './home/home.service';
 import { UsersComponent } from './users/users.component';
 import { TodosDetailsComponent } from './todos/todos-details/todos-details.component';
 
-import {ApplicationUserService} from './todos/todos-details/application-user.service';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 
 import { myRxStompConfig } from './my-rx-stomp.config';
 import { MessagesComponent } from './messages/messages.component';
+
 
 
 
@@ -62,7 +62,8 @@ const appRoutes: Routes = [
     LastStepComponent,
     UsersComponent,
     TodosDetailsComponent,
-    MessagesComponent
+    MessagesComponent,
+
   ],
   imports: [
     BrowserModule,
