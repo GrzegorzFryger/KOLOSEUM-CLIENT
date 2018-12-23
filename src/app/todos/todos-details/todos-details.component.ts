@@ -62,6 +62,7 @@ export class TodosDetailsComponent implements OnInit {
     this.values = event.target.value;
 
     if (this.values.length >= 2) {
+
       this.userService.getAllPersonByName(this.values).subscribe(
       resp => {
         this.users = resp;
