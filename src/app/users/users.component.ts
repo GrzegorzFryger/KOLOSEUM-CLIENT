@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationUser} from '../models/application-user.model';
 import {RoleModel} from '../models/role.model';
+import {UserRegisterService} from '../user-register/user-register.service';
 
 @Component({
   selector: 'app-users',
@@ -12,13 +13,15 @@ export class UsersComponent implements OnInit {
 
   allUsers: ApplicationUser[];
   availableRoles: RoleModel[];
+  currentUser: ApplicationUser;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserRegisterService) {
   }
 
   ngOnInit() {
     this.getAllUsers();
     this.getAvailableRoles();
+    this.currentUser = this.userService.getUserObjet();
   }
 
   getAllUsers() {
@@ -35,6 +38,10 @@ export class UsersComponent implements OnInit {
 
   isUserHasRole(applicationUser: ApplicationUser, role: string): boolean {
     let hasRole = false;
+
+    if (applicationUser.roles === undefined) {
+      return false;
+    }
     applicationUser.roles.forEach(r => {
       if (r.name === role) {
         hasRole = true;
@@ -43,8 +50,28 @@ export class UsersComponent implements OnInit {
     return hasRole;
   }
 
-  updateRole(applicationUser: ApplicationUser, role: string) {
+  updateRole(applicationUser: ApplicationUser, role: string, userIndex: number) {
 
+    const roleObject = {name: role};
+    let roleToRemove;
+
+    if (this.isUserHasRole(applicationUser, role)) {
+      applicationUser.roles.forEach( r => {
+        if ( r.name === role) {
+          roleToRemove = r;
+        }
+      });
+      applicationUser.roles.splice(applicationUser.roles.indexOf(roleToRemove), 1);
+    } else {
+      applicationUser.roles.push(roleObject);
+    }
+
+    console.log(applicationUser);
+
+    this.http.put<ApplicationUser>('http://localhost:8080/api/user/' + applicationUser.id, applicationUser).subscribe(resp => {
+      this.allUsers.splice(userIndex);
+      this.allUsers.push(resp);
+    });
   }
 
 }

@@ -2,8 +2,11 @@
   <div class="row">
     <div class="col-sm-12">
 
+      <div *ngIf="!isUserHasRole(currentUser, 'ROLE_ADMIN')" class="alert alert-info" role="alert">
+        Current user ( {{currentUser.firstName}}  {{currentUser.lastName}} ) dont have permition to that view
+      </div>
 
-      <table class="table">
+      <table class="table" *ngIf="isUserHasRole(currentUser, 'ROLE_ADMIN')">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -23,11 +26,10 @@
           <td>
             <div class="form-check">
               <div *ngFor="let role of availableRoles;">
-                <div (click)="updateRole(user, role)">
-                  <input class="form-check-input" [checked]="isUserHasRole(user, role)" type="checkbox"
-                         id="{{role}}{{i+1}}" value="option1">
-                  <label class="form-check-label" for="{{role}}{{i+1}}">{{role}}</label>
-                </div>
+                <input class="form-check-input" (click)="updateRole(user, role, i)" [checked]="isUserHasRole(user, role)"
+                       type="checkbox"
+                       id="{{role}}{{i+1}}" value="option1">
+                <label class="form-check-label" for="{{role}}{{i+1}}">{{role}}</label>
               </div>
             </div>
           </td>
