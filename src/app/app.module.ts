@@ -28,6 +28,8 @@ import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '
 
 import { myRxStompConfig } from './my-rx-stomp.config';
 import { MessagesComponent } from './messages/messages.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { SettingsComponent } from './user-panel/settings/settings.component';
 
 
 
@@ -41,7 +43,10 @@ const appRoutes: Routes = [
   {path: 'user', component: UserRegisterComponent},
   {path: 'score', component: MessagesComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
- 
+  {path: 'userpanel', component: UserPanelComponent, children: [
+      {path: 'settings', component: SettingsComponent}
+    ], canActivate: [AuthGuard]},
+
   {path: 'todos', component: TodosComponent, children: [
       {path: ':id', component: TodosDetailsComponent }
     ], canActivate: [AuthGuard]},
@@ -63,6 +68,8 @@ const appRoutes: Routes = [
     UsersComponent,
     TodosDetailsComponent,
     MessagesComponent,
+    UserPanelComponent,
+    SettingsComponent,
 
   ],
   imports: [

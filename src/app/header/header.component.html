@@ -43,6 +43,7 @@
           </div>
           <div *ngIf="applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" (click)="applicationUserService.logout()">Logout</a>
+            <a class="dropdown-item" routerLink="/userpanel" >User Panel</a>
           </div>
         </li>
       </ul>
