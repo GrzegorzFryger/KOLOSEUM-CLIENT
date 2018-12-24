@@ -7,8 +7,12 @@
     <li class="message" *ngFor=" let data of receivedMessages">
 
       <p>
-        {{data}}
+        {{data.expTotalEarned}}
       </p>
+      <p>
+        {{data.firstName}}
+      </p>
+
     </li>
 
   </ol>

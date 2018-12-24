@@ -32,6 +32,7 @@ import { MessagesComponent } from './messages/messages.component';
 
 
 
+
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
   {path: 'application/second', component: SecondStepComponent, canActivate: [AuthGuard]},
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     LastStepComponent,
     UsersComponent,
     TodosDetailsComponent,
-    MessagesComponent
+    MessagesComponent,
+
   ],
   imports: [
     BrowserModule,
