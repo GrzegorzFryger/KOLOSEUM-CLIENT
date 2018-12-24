@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit {
 
   updateRole(applicationUser: ApplicationUser, role: string, userIndex: number) {
 
-    const roleObject = {name: role};
+    const roleObject: RoleModel = {name: role};
     let roleToRemove;
 
     if (this.isUserHasRole(applicationUser, role)) {
