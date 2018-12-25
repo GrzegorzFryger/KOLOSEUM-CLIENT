@@ -1,5 +1,3 @@
-@import '~bootstrap/dist/css/bootstrap.css';
-
 
 input[type=text], input[type=text]:focus, select, select:focus {
   -webkit-box-shadow: none!important;

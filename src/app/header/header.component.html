@@ -25,6 +25,9 @@
             <a class="dropdown-item" routerLink="/todos" (click)="openModal(addTask)">Add task</a>
           </div>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/leaderboard">Leaderboard</a>
+        </li>
         <li *ngIf="applicationUserService.isUserHasRole('ROLE_ADMIN')" class="nav-item active">
           <a class="nav-link" routerLink="/users">Users</a>
         </li>
@@ -42,8 +45,8 @@
             <a class="dropdown-item" routerLink="/user">Login / Register</a>
           </div>
           <div *ngIf="applicationUserService.isUserAuthorised()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" (click)="applicationUserService.logout()">Logout</a>
             <a class="dropdown-item" routerLink="/userpanel" >User Panel</a>
+            <a class="dropdown-item" (click)="applicationUserService.logout()">Logout</a>
           </div>
         </li>
       </ul>

@@ -31,3 +31,7 @@ li.list-users:hover {
   background-color: #ffc107;
 }
 
+.alert-danger {
+  height: 50%;
+}
+

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   today;
   days7;
   days30;
-  showPolicyDetailsWindows: boolean = false;
+  showPolicyDetailsWindows = false;
   selectedApplication: InsuranceApplicaion;
 
   constructor(private homeService: HomeService) {

@@ -42,7 +42,7 @@
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate === today">
                 <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}} </th>
-                <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
+                <td>{{application.persons[0]?.firstName}} {{application.persons[0]?.lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
                 <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>
@@ -74,7 +74,7 @@
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate >= days7">
                 <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
-                <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
+                <td>{{application.persons[0]?.firstName}} {{application.persons[0]?.lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
                 <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>
@@ -101,7 +101,7 @@
               <tbody *ngFor="let application of userApplications">
               <tr *ngIf="application.registerDate >= days30">
                 <th scope="row" (click)="showPolicyDetails(application.number)">{{application.number}}</th>
-                <td>{{application.persons[0].firstName}} {{application.persons[0].lastName}}</td>
+                <td>{{application.persons[0]?.firstName}} {{application.persons[0]?.lastName}}</td>
                 <td>{{application.vehicle.mark}} {{application.vehicle.model}}</td>
                 <td>{{application.totalPolicyValue}}<span *ngIf="application.totalPolicyValue !== undefined">zł</span></td>
                 <td>{{application.state}}</td>

@@ -30,6 +30,8 @@ import { myRxStompConfig } from './my-rx-stomp.config';
 import { MessagesComponent } from './messages/messages.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { SettingsComponent } from './user-panel/settings/settings.component';
+import {LeaderboardComponent} from './leaderboard/leaderboard.component';
+import {LeaderboardService} from './leaderboard/leaderboard.service';
 
 
 
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
   {path: 'user', component: UserRegisterComponent},
   {path: 'score', component: MessagesComponent},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
   {path: 'userpanel', component: UserPanelComponent, children: [
       {path: 'settings', component: SettingsComponent}
     ], canActivate: [AuthGuard]},
@@ -62,6 +65,7 @@ const appRoutes: Routes = [
     HomeComponent,
     ApplicationComponent,
     UserRegisterComponent,
+    LeaderboardComponent,
     TodosComponent,
     SecondStepComponent,
     ThirdStepComponent,
@@ -86,6 +90,7 @@ const appRoutes: Routes = [
   providers: [
     ApplicationService,
     UserRegisterService,
+    LeaderboardService,
     HomeService,
     TodoService,
     AuthGuard,

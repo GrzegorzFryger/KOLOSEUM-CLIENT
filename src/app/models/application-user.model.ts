@@ -1,4 +1,5 @@
 import {RoleModel} from './role.model';
+import {Expierence} from './expierence.model';
 
 export class ApplicationUser {
   id: number;
@@ -9,6 +10,7 @@ export class ApplicationUser {
   email: string;
   password: string;
   roles: Array<RoleModel>;
+  experience: Expierence;
 
 
 }
