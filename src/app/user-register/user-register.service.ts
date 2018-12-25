@@ -54,8 +54,21 @@ export class UserRegisterService {
   }
 
   getAllPersonByName( value: string): Observable<ApplicationUser[]> {
-    let param = new HttpParams().set('firstName', value);
+    const param = new HttpParams().set('firstName', value);
     return this.http.get<ApplicationUser[]>('http://localhost:8080/api/user/search/like', {params: param } );
+  }
+
+  updatePassword(oldPassword: string, newPassword: string): Observable<ApplicationUser> {
+
+    return this.http.put<ApplicationUser>(`http://localhost:8080/api/user/${this.loginedUser.applicationUser.id}/password`,
+      { oldPassword: oldPassword, newPassword: newPassword});
+  }
+
+  updateEmail(email: string): Observable<ApplicationUser> {
+
+    const temp = this.loginedUser.applicationUser;
+    temp.email = email;
+    return this.http.put<ApplicationUser>('http://localhost:8080/api/user/' + this.loginedUser.applicationUser.id, temp );
   }
 }
 

@@ -35,6 +35,7 @@ import { SettingsComponent } from './user-panel/settings/settings.component';
 
 
 
+
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
   {path: 'application/second', component: SecondStepComponent, canActivate: [AuthGuard]},
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule.forRoot(),
     ModalModule.forRoot(),
+    NgbModule,
   ],
   providers: [
     ApplicationService,

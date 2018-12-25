@@ -17,7 +17,7 @@
                *ngFor="let data of todosList ; let i = index"
                [routerLink]="[data.id]"
                routerLinkActive="active">
-            {{data.id}}
+            <!--{{data.id}}-->
             <div class="col-lg-2">
               <input type="checkbox" (change)="changeStateToDone(i, $event.target.checked)"
                      name="checkboxG4" id="checkbox{{data.id}}" class="css-checkbox">

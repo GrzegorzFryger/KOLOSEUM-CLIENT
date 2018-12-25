@@ -1,0 +1,16 @@
+div.card-body {
+  padding: 10px;
+
+}
+
+div.card-header {
+  padding: 4px;
+  /*background-color: #ffc107;*/
+}
+
+.btn-confirm {
+
+  background-color: #ffc107 !important;
+
+}
+
