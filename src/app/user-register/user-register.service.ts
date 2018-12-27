@@ -4,13 +4,14 @@ import {ApplicationUser} from '../models/application-user.model';
 import {LoginUserModel} from '../models/login-user.model';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/index';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable()
 export class UserRegisterService {
 
   loginedUser: LoginUserModel = new LoginUserModel();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
   }
 
   registerUser(user: ApplicationUser) {
@@ -27,6 +28,9 @@ export class UserRegisterService {
 
   logout() {
     localStorage.clear();
+    this.cookieService.delete('userName');
+    this.cookieService.delete('userLastName');
+    this.cookieService.delete('userEmail');
     this.router.navigate(['/user']);
   }
 

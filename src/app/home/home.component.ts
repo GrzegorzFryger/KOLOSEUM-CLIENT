@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userApplications = [];
     this.getUserApplication();
     this.getDates();
   }

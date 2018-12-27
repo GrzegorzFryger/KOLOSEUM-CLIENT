@@ -32,6 +32,8 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { SettingsComponent } from './user-panel/settings/settings.component';
 import {LeaderboardComponent} from './leaderboard/leaderboard.component';
 import {LeaderboardService} from './leaderboard/leaderboard.service';
+import {CookieService} from 'ngx-cookie-service';
+import {SystemInfoComponent} from './system-info/system-info.component';
 
 
 
@@ -40,6 +42,7 @@ import {LeaderboardService} from './leaderboard/leaderboard.service';
 
 const appRoutes: Routes = [
   {path: 'application', component: ApplicationComponent, canActivate: [AuthGuard]},
+  {path: 'system-info', component: SystemInfoComponent, canActivate: [AuthGuard]},
   {path: 'application/second', component: SecondStepComponent, canActivate: [AuthGuard]},
   {path: 'application/third', component: ThirdStepComponent, canActivate: [AuthGuard]},
   {path: 'application/last', component: LastStepComponent, canActivate: [AuthGuard]},
@@ -64,6 +67,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     ApplicationComponent,
+    SystemInfoComponent,
     UserRegisterComponent,
     LeaderboardComponent,
     TodosComponent,
@@ -91,6 +95,7 @@ const appRoutes: Routes = [
     ApplicationService,
     UserRegisterService,
     LeaderboardService,
+    CookieService,
     HomeService,
     TodoService,
     AuthGuard,
