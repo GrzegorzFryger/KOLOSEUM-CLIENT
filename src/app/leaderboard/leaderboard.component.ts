@@ -18,8 +18,9 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   constructor(private service: LeaderboardService, private rxStompService: RxStompService) { }
 
   ngOnInit() {
-
     if (this.applicationUsers === undefined) {
+
+      console.log('jestem tu');
       this.service.getAllUsers().then( resp => {
         this.applicationUsers = resp;
         console.log(resp);

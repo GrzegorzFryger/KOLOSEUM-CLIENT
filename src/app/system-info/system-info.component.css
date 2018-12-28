@@ -1,0 +1,20 @@
+.log-window {
+  height:350px;
+  overflow-y: auto;
+}
+
+.log-window-element {
+  font-size: 14px;
+  max-height: 50px;
+}
+.card-body {
+  padding: 0.5rem;
+}
+
+.panel-heading {
+  color: #ffc107;
+  border-bottom: 1px solid #ffc107;
+  background: 0 0;
+  font-size: 20px;
+  padding-left: 0!important;
+}

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div *ngIf="!isUserHasRole(currentUser, 'ROLE_ADMIN')" class="alert alert-info" role="alert">
+        Current user ( {{currentUser.firstName}} {{currentUser.lastName}} ) dont have permition to that view
+      </div>
+
+      <div *ngIf="isUserHasRole(currentUser, 'ROLE_ADMIN')">
+
+        <div class="panel-heading mb-3">System State</div>
+
+        <div class="p-5 text-center">
+          <h3 class="btn btn-lg " [ngClass]="{'btn-danger': systemStatus != 'UP', 'btn-success': systemStatus == 'UP'}">
+            System State: {{systemStatus}}</h3>
+        </div>
+
+        <div class="panel-heading mb-3">System logs</div>
+
+        <div class="log-window">
+          <div *ngFor="let trace of systemHttpTrace">
+            <div class="card mt-2 log-window-element border-success"
+                 [ngClass]="{'border-success': trace.response.status == 200 || trace.response.status == 201,
+                         'border-danger': trace.response.status != 200 && trace.response.status != 201
+                          }">
+              <div class="card-body">
+                <b>time:</b>{{trace.timestamp}}
+                <b>endpoint:</b>[{{trace.request.method}}] {{trace.request.uri}}}
+                <b>status:</b>{{trace.response.status}} <b>timeTaken:</b>{{trace.timeTaken}}ms
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

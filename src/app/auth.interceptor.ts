@@ -11,11 +11,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.service.isUserAuthorised()) {
+    if (this.service.isUserAuthorised() && !req.url.includes('http://localhost:8080/actuator/')) {
       const authReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + this.service.loginedUser.token)
           .set('Accept', 'application/json')
           .set('Access-Control-Allow-Origin', 'http://localhost:4200')
+          .set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS'),
       });
 
       return next.handle(authReq);
