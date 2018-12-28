@@ -32,6 +32,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { SettingsComponent } from './user-panel/settings/settings.component';
 import {LeaderboardComponent} from './leaderboard/leaderboard.component';
 import {LeaderboardService} from './leaderboard/leaderboard.service';
+import {ClientsService} from './application/clients.service';
 
 
 
@@ -95,6 +96,7 @@ const appRoutes: Routes = [
     TodoService,
     AuthGuard,
     TodosComponent,
+    ClientsService,
     {
       provide: InjectableRxStompConfig,
       useValue: myRxStompConfig

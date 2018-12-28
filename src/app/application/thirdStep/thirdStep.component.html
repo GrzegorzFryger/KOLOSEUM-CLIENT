@@ -1,9 +1,25 @@
 <div class="container">
+
   <div class="row">
 
     <div class="col-sm-10">
 
-    <div class="panel-heading mb-3">Dane osoby</div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone number:</label>
+        <input id="phoneNumber" type="text" class="form-control"
+               [(ngModel)]="model" [ngbTypeahead]="search"
+               [resultFormatter]="formatResults"
+               [inputFormatter]="formatResults"
+               (selectItem)="selectedPerson($event)"
+               placeholder="Search clients for phone number" />
+        <span *ngIf="searching">searching...</span>
+        <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+      </div>
+
+      <hr>
+
+      <div class="person-form">
+      <div class="panel-heading mb-3">Dane osoby</div>
 
     <div class="form-group">
       <label for="customerName">First Name</label>
@@ -103,6 +119,6 @@
       KUP POLISE &gt;
     </button>
 
-
+    </div>
   </div>
 </div>

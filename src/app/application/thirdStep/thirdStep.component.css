@@ -43,4 +43,19 @@
   height: 60px;
 }
 
+.typeahead-basic {
+  /*border-bottom-width: 0px!important;*/
 
+}
+
+
+.dropdown-menu {
+  /*border-top-width: 0px!important;*/
+  position: static;
+  margin: 0px;
+  width: 100%;
+  border-bottom-left-radius:  20px;
+  border-bottom-right-radius:  20px;
+  padding-right: 12px;
+  padding-left: 12px;
+}

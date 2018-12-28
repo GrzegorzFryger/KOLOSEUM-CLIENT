@@ -10,5 +10,6 @@ export class Person {
   firstName: string;
   lastName: string;
   pesel: string;
+  phoneNumber: string;
   address: Address = new Address();
 }
