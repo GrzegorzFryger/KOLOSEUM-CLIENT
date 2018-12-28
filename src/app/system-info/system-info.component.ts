@@ -40,14 +40,14 @@ export class SystemInfoComponent implements OnInit {
   }
 
   getHttpTrace() {
-    this.http.get('http://localhost:8080/actuator/httptrace').subscribe( resp => {
-      this.systemHttpTrace = resp.traces;
+    this.http.get<any>('http://localhost:8080/actuator/httptrace').subscribe( resp => {
+      this.systemHttpTrace = resp;
     });
   }
 
   getSystemStatus() {
-    this.http.get('http://localhost:8080/actuator/health').subscribe( resp => {
-      this.systemStatus = resp.status;
+    this.http.get<any>('http://localhost:8080/actuator/health').subscribe( resp => {
+      this.systemStatus = resp;
     });
   }
 
