@@ -5,7 +5,7 @@
     <div class="col-sm-10">
 
       <div class="form-group">
-        <label for="phoneNumber">Phone number:</label>
+        <label for="phoneNumber">Search Person:</label>
         <input id="phoneNumber" type="text" class="form-control"
                [(ngModel)]="model" [ngbTypeahead]="search"
                [resultFormatter]="formatResults"
@@ -21,57 +21,99 @@
       <div class="person-form">
       <div class="panel-heading mb-3">Dane osoby</div>
 
-    <div class="form-group">
+    <div class="form-group" [formGroup]="customerForm">
       <label for="customerName">First Name</label>
-      <input (input)="application.persons[0].firstName = $event.target.value" type="text" class="form-control" id="customerName" placeholder="First Name">
+      <input formControlName="customerName" type="text" class="form-control" id="customerName" placeholder="First Name"
+             [ngClass]="{ 'is-invalid': submitted && f.customerName.errors }" />
+      <div *ngIf="submitted && f.customerName.errors" class="invalid-feedback">
+        <div *ngIf="f.customerName.errors.required">First Name is required</div>
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [formGroup]="customerForm">
       <label for="customerLastName">Last Name</label>
-      <input (input)="application.persons[0].lastName = $event.target.value" type="text" class="form-control" id="customerLastName" placeholder="Last Name">
+      <input formControlName="customerLastName" type="text" class="form-control" id="customerLastName" placeholder="Last Name"
+             [ngClass]="{ 'is-invalid': submitted && f.customerLastName.errors }" />
+      <div *ngIf="submitted && f.customerLastName.errors" class="invalid-feedback">
+        <div *ngIf="f.customerLastName.errors.required">Last Name is required</div>
+      </div>
+
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [formGroup]="customerForm">
       <label for="customerPesel">Pesel</label>
-      <input (input)="application.persons[0].pesel = $event.target.value" type="text" class="form-control" id="customerPesel" placeholder="Pesel">
+      <input formControlName="customerPesel" type="text" class="form-control" id="customerPesel" placeholder="Pesel"
+             [ngClass]="{ 'is-invalid': submitted && f.customerPesel.errors }" />
+      <div *ngIf="submitted && f.customerPesel.errors" class="invalid-feedback">
+        <div *ngIf="f.customerPesel.errors.required">Pesel Name is required</div>
+      </div>
+    </div>
+
+        <div class="form-group" [formGroup]="customerForm">
+      <label for="customerPhoneNumber">PhoneNumber</label>
+      <input formControlName="customerPhoneNumber" type="text" class="form-control" id="customerPhoneNumber" placeholder="PhoneNumber"
+             [ngClass]="{ 'is-invalid': submitted && f.customerPhoneNumber.errors }" />
+      <div *ngIf="submitted && f.customerPhoneNumber.errors" class="invalid-feedback">
+        <div *ngIf="f.customerPhoneNumber.errors.required">Phone number is required</div>
+      </div>
     </div>
 
       <div class="panel-heading mb-3">Adres zamieszkania</div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="adressPostalCode">Postal Code</label>
-        <input (input)="application.persons[0].address.postalCode = $event.target.value"  type="text" class="form-control" id="adressPostalCode" placeholder="Postal Code">
+        <input formControlName="adressPostalCode"  type="text" class="form-control" id="adressPostalCode" placeholder="Postal Code"
+               [ngClass]="{ 'is-invalid': submitted && f.adressPostalCode.errors }" />
+        <div *ngIf="submitted && f.adressPostalCode.errors" class="invalid-feedback">
+          <div *ngIf="f.adressPostalCode.errors.required">Postal Code is required</div>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="adressCity">Postal Code</label>
-        <input (input)="application.persons[0].address.city = $event.target.value" type="text" class="form-control" id="adressCity" placeholder="City">
+        <input formControlName="adressCity" type="text" class="form-control" id="adressCity" placeholder="City"
+               [ngClass]="{ 'is-invalid': submitted && f.adressCity.errors }" />
+        <div *ngIf="submitted && f.adressCity.errors" class="invalid-feedback">
+          <div *ngIf="f.adressCity.errors.required">City is required</div>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="adressStreet">Street</label>
-        <input (input)="application.persons[0].address.street = $event.target.value" type="text" class="form-control" id="adressStreet" placeholder="Street">
+        <input formControlName="adressStreet" type="text" class="form-control" id="adressStreet" placeholder="Street"
+               [ngClass]="{ 'is-invalid': submitted && f.adressStreet.errors }" />
+        <div *ngIf="submitted && f.adressStreet.errors" class="invalid-feedback">
+          <div *ngIf="f.adressStreet.errors.required">Street is required</div>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="adressHouse">House</label>
-        <input (input)="application.persons[0].address.house = $event.target.value" type="text" class="form-control" id="adressHouse" placeholder="House">
+        <input formControlName="adressHouse" type="text" class="form-control" id="adressHouse" placeholder="House"
+               [ngClass]="{ 'is-invalid': submitted && f.adressHouse.errors }" />
+        <div *ngIf="submitted && f.adressHouse.errors" class="invalid-feedback">
+          <div *ngIf="f.adressHouse.errors.required">House is required</div>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="adressApartment">Apartment</label>
-        <input (input)="application.persons[0].address.apartment = $event.target.value" type="text" class="form-control" id="adressApartment" placeholder="Apartment">
+        <input formControlName="adressApartment" type="text" class="form-control" id="adressApartment" placeholder="Apartment"
+              />
       </div>
 
       <div class="panel-heading mb-3">Okres Ochrony</div>
 
       <div class="form-group">
         <label for="policyStart">Insurance Start</label>
-        <form class="form-inline">
-          <div class="form-group">
+        <form class="form-inline" [formGroup]="customerForm">
+          <div class="form-group" >
             <div class="input-group" id="policyStart">
-              <input class="form-control" value="{{application.risks[0].startDate}}" (input)="setStardAndEndDate($event.target.value)" required  placeholder="yyyy-mm-dd"
-                     name="createdDate" ngbDatepicker #IStart="ngbDatepicker">
+              <input class="form-control" value="{{dateNow}}"
+                      placeholder="yyyy-mm-dd" formControlName="startDate"
+                     name="createdDate" ngbDatepicker #IStart="ngbDatepicker"
+                     [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="IStart.toggle()" type="button">
                   <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -86,36 +128,48 @@
 
       <div class="form-group">
         <label for="policyEnd">Insurance End</label>
-        <form class="form-inline disabled" >
+        <form class="form-inline " [formGroup]="customerForm" >
           <div class="form-group d-inline">
             <div class="input-group" id="policyEnd">
-              <input class="form-control" value="{{application.risks[0].endDate}}" required  placeholder="yyyy-mm-dd"
-                     name="createdDate" ngbDatepicker #IEnd="ngbDatepicker">
+              <input formControlName="endDate" class="form-control" value="{{dateEnd}}" placeholder="yyyy-mm-dd"
+                     name="createdDate" ngbDatepicker #IEnd="ngbDatepicker"
+                     [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" />
+
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary"  disabled (click)="IEnd.toggle()" type="button">
+                <button class="btn btn-outline-secondary"   (click)="IEnd.toggle()" type="button">
                   <i class="fa fa-calendar" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
+
           </div>
         </form>
       </div>
 
       <div class="panel-heading mb-3">Dane pojazdu</div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="LicencePlateNumber">Licence plate number</label>
-        <input (input)="application.vehicle.licencePlateNumber = $event.target.value" type="text" class="form-control" id="LicencePlateNumber" placeholder="Licence plate number">
+        <input formControlName="LicencePlateNumber" type="text" class="form-control" id="LicencePlateNumber"
+               placeholder="Licence plate number"
+               [ngClass]="{ 'is-invalid': submitted && f.LicencePlateNumber.errors }" />
+        <div *ngIf="submitted && f.LicencePlateNumber.errors" class="invalid-feedback">
+          <div *ngIf="f.LicencePlateNumber.errors.required">LicencePlateNumber is required</div>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" [formGroup]="customerForm">
         <label for="vin">Vin</label>
-        <input (input)="application.vehicle.vin = $event.target.value" type="text" class="form-control" id="vin" placeholder="Vin">
+        <input formControlName="vin" type="text" class="form-control" id="vin" placeholder="Vin"
+               [ngClass]="{ 'is-invalid': submitted && f.vin.errors }" />
+        <div *ngIf="submitted && f.vin.errors" class="invalid-feedback">
+          <div *ngIf="f.vin.errors.required">Vin is required</div>
+        </div>
       </div>
 
     </div>
 
-    <button type="submit" (click)="acceptApplication()"  class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
+    <button type="submit" (click)="submitCustomerFrom()"  class="col-sm-12 btn btn-default text-center next button-nextStep mt-4">
       KUP POLISE &gt;
     </button>
 
