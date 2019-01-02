@@ -4,14 +4,15 @@
     <div class="col-sm-12">
 
       <div class="card-columns " >
-        <div class="card mb-3 shadow  bg-white rounded" *ngFor="let riskVariant of application.riskVariants" [ngClass]="{'bg-light border-primary' : riskVariant.addedToCart}" style="min-width: 250px">
-          <div class="card-header" [ngClass]="{'text-primary' : riskVariant.addedToCart}">{{riskVariant.displayName}}</div>
+        <div class="card mb-3 shadow  bg-white rounded" *ngFor="let riskVariant of application.riskVariants" [ngClass]="{'bg-light border-warning' : riskVariant.addedToCart}" style="min-width: 250px">
+          <div class="card-header" [ngClass]="{'text-warning' : riskVariant.addedToCart}">{{riskVariant.displayName}}</div>
           <div class="card-body">
             <p class="card-text">Cena: {{getPrice(riskVariant.premiumList)}}zł</p>
+            <p class="card-text" *ngIf="riskVariant.name !== 'OC'">Suma Ubezpieczenia: {{riskVariant.sum}}zł</p>
           </div>
-          <button *ngIf="!riskVariant.addedToCart && riskVariant.name !== 'OC'" class="btn btn-outline-primary btn-block" (click)="addRiskToCart(riskVariant.name)">Add</button>
-          <button *ngIf="riskVariant.addedToCart && riskVariant.name !== 'OC'" class="btn btn-outline-primary btn-block" (click)="removeFromCart(riskVariant.name)">Remove</button>
-          <button *ngIf="riskVariant.name === 'OC'" class="btn btn-outline-primary btn-block disabled">Remove</button>
+          <button *ngIf="!riskVariant.addedToCart && riskVariant.name !== 'OC'" class="btn btn-outline-warning btn-block" (click)="addRiskToCart(riskVariant.name)">Add</button>
+          <button *ngIf="riskVariant.addedToCart && riskVariant.name !== 'OC'" class="btn btn-outline-warning btn-block" (click)="removeFromCart(riskVariant.name)">Remove</button>
+          <button *ngIf="riskVariant.name === 'OC'" class="btn btn-outline-warning btn-block disabled">Remove</button>
         </div>
       </div>
 

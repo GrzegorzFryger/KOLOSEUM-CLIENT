@@ -87,7 +87,7 @@ export class SecondStepComponent implements OnInit {
   }
 
   updateApplicaiton() {
-    let risks = [];
+    let risks: Array<Risk> = [];
     this.application.riskVariants.forEach(risk => {
       if (risk.addedToCart) {
         risks.push(risk);

@@ -11,14 +11,14 @@
         <div class="panel-heading mb-3">System State</div>
 
         <div class="p-5 text-center">
-          <h3 class="btn btn-lg " [ngClass]="{'btn-danger': systemStatus != 'UP', 'btn-success': systemStatus == 'UP'}">
-            System State: {{systemStatus}}</h3>
+          <h3 class="btn btn-lg " [ngClass]="{'btn-danger': systemStatus.status != 'UP', 'btn-success': systemStatus.status == 'UP'}">
+            System State: {{systemStatus.status}}</h3>
         </div>
 
         <div class="panel-heading mb-3">System logs</div>
 
         <div class="log-window">
-          <div *ngFor="let trace of systemHttpTrace">
+          <div *ngFor="let trace of systemHttpTrace.traces">
             <div class="card mt-2 log-window-element border-success"
                  [ngClass]="{'border-success': trace.response.status == 200 || trace.response.status == 201,
                          'border-danger': trace.response.status != 200 && trace.response.status != 201
