@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDates();
     this.userApplications = [];
     this.getUserApplication();
-    this.getDates();
   }
 
   async getUserApplication() {
