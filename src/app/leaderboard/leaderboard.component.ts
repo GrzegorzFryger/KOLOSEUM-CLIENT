@@ -12,7 +12,8 @@ import { Message } from '@stomp/stompjs';
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
 
-  private topicSubscription: Subscription;
+  public topicSubscription: Subscription;
+  text: string;
   applicationUsers: ApplicationUser[];
 
   constructor(private service: LeaderboardService, private rxStompService: RxStompService) { }
@@ -28,8 +29,9 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
     }
 
     this.topicSubscription = this.rxStompService.watch('/score/experience').subscribe((message: Message) => {
-      this.applicationUsers = JSON.parse(message.body);
-      console.log(this.applicationUsers);
+     // this.applicationUsers = JSON.parse(message.body);
+      this.text = message.body;
+      console.log('message bofy ' + message.body);
     });
   }
 
