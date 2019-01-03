@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import {Subscription} from 'rxjs';
+import {UserRegisterService} from '../user-register/user-register.service';
 
 
 
@@ -16,12 +17,13 @@ export class NotificationComponent implements OnInit, OnDestroy {
   messages: Array<string>;
   count: number;
 
-  constructor(private rxStompService: RxStompService) { }
+  constructor(private rxStompService: RxStompService, private userService: UserRegisterService) { }
 
   ngOnInit() {
 
     this.messages = new Array<string>();
-    this.topicSubscription = this.rxStompService.watch('/score/1').subscribe((message: Message) => {
+    this.topicSubscription = this.rxStompService.watch('/score/notification/' + this.userService.loginedUser.applicationUser.id)
+      .subscribe((message: Message) => {
       this.messages.push(message.body);
       this.count = this.messages.length;
     });
