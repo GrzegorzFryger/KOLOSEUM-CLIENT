@@ -35,6 +35,9 @@ import {LeaderboardService} from './leaderboard/leaderboard.service';
 import {ClientsService} from './application/clients.service';
 import {CookieService} from 'ngx-cookie-service';
 import {SystemInfoComponent} from './system-info/system-info.component';
+import { NotificationComponent } from './notification/notification.component';
+import {MatBadgeModule, MatButtonModule, MatIconModule, MatListModule, MatMenuModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -80,6 +83,7 @@ const appRoutes: Routes = [
     MessagesComponent,
     UserPanelComponent,
     SettingsComponent,
+    NotificationComponent,
 
   ],
   imports: [
@@ -91,6 +95,14 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     ModalModule.forRoot(),
     NgbModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule
+
+
   ],
   providers: [
     ApplicationService,
