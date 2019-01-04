@@ -7,7 +7,7 @@ export class InsuranceApplicaion {
   id: number;
   number: number;
   persons: Array<Person>;
-  registerDate: Date;
+  registerDate: Date = new Date();
   riskVariants: Array<Risk>;
   risks: Array<Risk>;
   state: string;

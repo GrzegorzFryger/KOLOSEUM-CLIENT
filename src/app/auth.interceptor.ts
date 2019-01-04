@@ -15,9 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const token = this.service.loginedUser.token;
-
-    // todo not working
-    //const expirationDate = this.helper.getTokenExpirationDate(token);
+    // const expirationDate = this.helper.getTokenExpirationDate(token);
 
 
     if (this.service.isUserAuthorised() && !req.url.includes('http://localhost:8080/actuator/')) {
