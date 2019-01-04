@@ -39,11 +39,11 @@ import { NotificationComponent } from './notification/notification.component';
 import {
   MatBadgeModule,
   MatButtonModule,
-  MatCardModule,
-  MatIconModule,
+  MatCardModule, MatFormFieldModule, MatGridListModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatRippleModule, MatTableModule, MatTabsModule
+  MatRippleModule, MatSelectModule, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
@@ -114,7 +114,11 @@ const appRoutes: Routes = [
     MatCardModule,
     MatRippleModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatGridListModule
 
 
   ],

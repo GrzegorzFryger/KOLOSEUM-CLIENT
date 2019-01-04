@@ -2,7 +2,21 @@ table {
   width: 90%;
 }
 
+.select-field {
 
+  width: 20%;
+}
+
+.input-field {
+
+  width: 60%;
+}
+
+.button-field {
+
+  width: 10%;
+  border-radius: 20px;
+}
 
 
 .first-box {
@@ -12,5 +26,25 @@ table {
   margin: 5px;
   padding-top: 20px;
   padding-bottom: 20px;
+  border-radius: 8px;
+}
+.second-box {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+}
+
+.search-box {
+
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
   border-radius: 8px;
 }
