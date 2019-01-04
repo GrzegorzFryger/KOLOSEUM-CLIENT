@@ -1,10 +1,9 @@
-.policy-box .nav-item .active {
-  background-color: #ffc107;
-}
+.mat-card  {
 
-.policy-box tbody {
-  font-size: 90%;
-}
-.col-sm-3 {
-  text-align: center;
+
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+  width: 260px;
+
 }

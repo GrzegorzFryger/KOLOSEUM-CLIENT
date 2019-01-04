@@ -36,8 +36,17 @@ import {ClientsService} from './application/clients.service';
 import {CookieService} from 'ngx-cookie-service';
 import {SystemInfoComponent} from './system-info/system-info.component';
 import { NotificationComponent } from './notification/notification.component';
-import {MatBadgeModule, MatButtonModule, MatIconModule, MatListModule, MatMenuModule} from '@angular/material';
+import {
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatRippleModule, MatTableModule, MatTabsModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
 
 
 
@@ -84,6 +93,7 @@ const appRoutes: Routes = [
     UserPanelComponent,
     SettingsComponent,
     NotificationComponent,
+    PolicyPanelComponent,
 
   ],
   imports: [
@@ -100,7 +110,11 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatBadgeModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatRippleModule,
+    MatTableModule,
+    MatTabsModule
 
 
   ],
