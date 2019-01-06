@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import {Subscription} from 'rxjs';
@@ -31,6 +31,11 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.topicSubscription.unsubscribe();
+  }
+
+  clearNotification(): void {
+    this.messages = [];
+    this.count = null;
   }
 
 
