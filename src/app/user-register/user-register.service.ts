@@ -74,5 +74,11 @@ export class UserRegisterService {
     temp.email = email;
     return this.http.put<ApplicationUser>('http://localhost:8080/api/user/' + this.loginedUser.applicationUser.id, temp );
   }
+
+  updateApplicationUserInLocalStorage(user: ApplicationUser): void {
+    this.loginedUser.applicationUser = user;
+    localStorage.clear();
+    localStorage.setItem('authUser', JSON.stringify(this.loginedUser));
+  }
 }
 

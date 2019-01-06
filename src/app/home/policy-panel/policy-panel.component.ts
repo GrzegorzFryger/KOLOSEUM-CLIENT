@@ -38,8 +38,8 @@ export class PolicyPanelComponent implements OnInit {
   ];
 
 
-
-  constructor(private http: HttpClient, private homeService: HomeService) { }
+  constructor(private http: HttpClient, private homeService: HomeService, private userService: UserRegisterService) {
+  }
 
   ngOnInit() {
     this.getUserApplication();
@@ -51,41 +51,43 @@ export class PolicyPanelComponent implements OnInit {
 
     this.selectedCard = event.index;
 
-    if (event.index === 0 ) {
-      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate === filter ;
+    if (event.index === 0) {
+      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate === filter;
       this.listInsurance.filter = this.today;
-    } if (event.index === 1 ) {
-      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate >= filter ;
+    }
+    if (event.index === 1) {
+      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate >= filter;
       this.listInsurance.filter = this.days7;
-    }if (event.index === 2 ) {
-      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate >= filter ;
+    }
+    if (event.index === 2) {
+      this.listInsurance.filterPredicate = (data: InsuranceApplicaion, filter: Date) => data.registerDate >= filter;
       this.listInsurance.filter = this.days30;
     }
   }
 
   cancelPolicy(index) {
 
-      const temp = this.listInsurance.data.filter(x => x.id === index )[0];
-      temp.state = 'CANCELED';
+    const temp = this.listInsurance.data.filter(x => x.id === index)[0];
+    temp.state = 'CANCELED';
 
-      this.http.put<InsuranceApplicaion>('http://localhost:8080/api/application/' + temp.id, temp).subscribe( resp =>
-          this.listInsurance.data.filter(x => x.id === index )[0] = resp,
+    this.http.put<InsuranceApplicaion>('http://localhost:8080/api/application/' + temp.id, temp).subscribe(resp =>
+        this.listInsurance.data.filter(x => x.id === index)[0] = resp,
       error => console.log(error.status)
     );
 
   }
 
   submitSearch() {
-    this.findPolicesByNumber(	this.policyNumber).subscribe(resp => this.dataFromSearch = resp
+    this.findPolicesByNumber(this.policyNumber).subscribe(resp => this.dataFromSearch = resp
     );
   }
 
-  applyNumber(event ) {
+  applyNumber(event) {
     this.policyNumber = event;
   }
 
   getUserApplication() {
-    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/1'  + '/byUser').subscribe(resp =>
+    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/' + this.userService.getUserObjet().id + '/byUser').subscribe(resp =>
       this.listInsurance = new MatTableDataSource(resp)
     );
   }
@@ -98,9 +100,9 @@ export class PolicyPanelComponent implements OnInit {
     });
   }
 
-  findPolicesByNumber( number: string): Observable<InsuranceApplicaion[]> {
+  findPolicesByNumber(number: string): Observable<InsuranceApplicaion[]> {
 
     const param = new HttpParams().set('number', number);
-    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/search', {params: param });
+    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/search', {params: param});
   }
 }

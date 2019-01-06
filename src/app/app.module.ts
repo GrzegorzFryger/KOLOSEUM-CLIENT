@@ -47,6 +47,7 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
+import {ScoreboardComponent} from './user-panel/scoreboard/scoreboard.component';
 
 
 
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
   {path: 'userpanel', component: UserPanelComponent, children: [
-      {path: 'settings', component: SettingsComponent}
+      {path: 'settings', component: SettingsComponent},
+      {path: 'scoreboard', component: ScoreboardComponent}
     ], canActivate: [AuthGuard]},
 
   {path: 'todos', component: TodosComponent, children: [
@@ -94,6 +96,7 @@ const appRoutes: Routes = [
     SettingsComponent,
     NotificationComponent,
     PolicyPanelComponent,
+    ScoreboardComponent,
 
   ],
   imports: [
