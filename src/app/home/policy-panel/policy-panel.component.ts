@@ -8,6 +8,7 @@ import {HomeService} from '../home.service';
 import {convertInjectableProviderToFactory} from '@angular/core/src/di/util';
 import {Observable} from 'rxjs';
 import {Person} from '../../models/person.model';
+import {PremiumList} from '../../models/premium-list.model';
 
 
 export interface Parametr {
@@ -25,6 +26,7 @@ export class PolicyPanelComponent implements OnInit {
   displayedColumns: string[] = ['number', 'policyNumber', 'person', 'date', 'state', 'vehicle', 'totalPolicyValue', 'star'];
   dataFromSearch: InsuranceApplicaion[];
   listInsurance;
+  selectedApplication: InsuranceApplicaion;
 
   today: Date;
   days7: Date;
@@ -42,6 +44,7 @@ export class PolicyPanelComponent implements OnInit {
   constructor(private http: HttpClient, private homeService: HomeService) { }
 
   ngOnInit() {
+    this.selectedCard = 2;
     this.getUserApplication();
     this.getDates();
   }
@@ -75,6 +78,12 @@ export class PolicyPanelComponent implements OnInit {
 
   }
 
+  showDetails(index) {
+    this.selectedCard = 4;
+    this.selectedApplication = this.listInsurance.data.filter(x => x.id === index )[0];
+
+  }
+
   submitSearch() {
     this.findPolicesByNumber(	this.policyNumber).subscribe(resp => this.dataFromSearch = resp
     );
@@ -85,8 +94,11 @@ export class PolicyPanelComponent implements OnInit {
   }
 
   getUserApplication() {
-    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/1'  + '/byUser').subscribe(resp =>
-      this.listInsurance = new MatTableDataSource(resp)
+    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/1'  + '/byUser').subscribe(resp => {
+      this.selectedApplication = resp[0];
+      this.listInsurance = new MatTableDataSource(resp);
+
+    }
     );
   }
 
@@ -103,4 +115,25 @@ export class PolicyPanelComponent implements OnInit {
     const param = new HttpParams().set('number', number);
     return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/search', {params: param });
   }
+
+  getPrice(premiumList: PremiumList): number {
+    let total = 0;
+    if (this.selectedApplication.installmentAmount === 1) {
+      premiumList.one.forEach(s => total += s);
+
+    }
+    if (this.selectedApplication.installmentAmount === 2) {
+      premiumList.two.forEach(s => total += s);
+    }
+    if (this.selectedApplication.installmentAmount === 4) {
+      premiumList.four.forEach(s => total += s);
+    }
+    if (this.selectedApplication.installmentAmount === 12) {
+      premiumList.twelve.forEach(s => total += s);
+    }
+
+    return total;
+  }
+
+
 }

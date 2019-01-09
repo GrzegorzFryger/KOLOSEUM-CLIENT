@@ -47,7 +47,8 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
-
+import { ChartPanelComponent } from './home/chart-panel/chart-panel.component';
+import {ChartsModule} from 'ng2-charts';
 
 
 
@@ -94,6 +95,7 @@ const appRoutes: Routes = [
     SettingsComponent,
     NotificationComponent,
     PolicyPanelComponent,
+    ChartPanelComponent,
 
   ],
   imports: [
@@ -118,7 +120,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    ChartsModule
 
 
   ],

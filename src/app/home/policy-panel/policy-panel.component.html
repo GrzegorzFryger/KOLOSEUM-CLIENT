@@ -1,5 +1,5 @@
 
-<mat-tab-group dynamicHeight selectedIndex="2" (selectedTabChange)="onLinkClick($event)" >
+<mat-tab-group dynamicHeight [selectedIndex]="selectedCard" (selectedTabChange)="onLinkClick($event)" >
   <mat-tab label="Today ">
     <div class="first-box mat-elevation-z4">
       <ng-container *ngTemplateOutlet="tablePolicy"></ng-container>
@@ -23,20 +23,30 @@
       <div class="search-box">
         <ng-container  *ngTemplateOutlet="searchPolices"></ng-container>
         <ng-container  *ngTemplateOutlet="tablePolicy"></ng-container>
-
       </div>
-
     </div>
   </mat-tab>
+
+  <mat-tab  label="{{selectedApplication?.number}}">
+    <div class="first-box mat-elevation-z4">
+
+      <ng-container *ngTemplateOutlet="insuranceDatalist"></ng-container>
+    </div>
+  </mat-tab>
+
 </mat-tab-group>
 
 
 <mat-menu #menu="matMenu">
-
   <ng-template matMenuContent let-index="index" >
     <button mat-menu-item (click)="cancelPolicy(index)" >
       <mat-icon>delete</mat-icon>
       <span>Cancel </span>
+    </button>
+
+    <button mat-menu-item (click)="showDetails(index)" >
+      <mat-icon>info</mat-icon>
+      <span>More </span>
     </button>
   </ng-template>
 </mat-menu>
@@ -114,4 +124,96 @@
     <input matInput (keyup)="applyNumber($event.target.value)" placeholder="Search By number">
   </mat-form-field>
   <button class="button-field" (click)="submitSearch()" mat-button color="primary">Primary</button>
+</ng-template>
+
+
+<ng-template #insuranceDatalist>
+
+  <div  class="col-sm-12">
+    <mat-card class="">
+      <mat-card-header>
+          <h5>  Details of {{selectedApplication.number}}</h5>
+        </mat-card-header>
+      <div class="card-body">
+
+        <mat-divider> </mat-divider>
+
+        <h4><span class="badge badge-warning w-100">Basics information</span></h4>
+        <div class="card-text col-sm-12 row">
+          <div class="col-sm-3"><b>Register Date</b> <br>{{selectedApplication.registerDate}}</div>
+          <div class="col-sm-3"><b>Installment Amount</b> <br>{{selectedApplication.installmentAmount}}</div>
+          <div class="col-sm-3"><b>State</b> <br>{{selectedApplication.state}}</div>
+          <div class="col-sm-3"><b>Number</b> <br>{{selectedApplication.number}}</div>
+        </div>
+
+        <mat-divider> </mat-divider>
+
+        <mat-divider> </mat-divider>
+
+        <h4><span class="badge badge-warning w-100" *ngIf="selectedApplication.risks.length !== 0">Risks</span></h4>
+
+        <div class="card-text col-sm-12 row">
+          <div class="col-sm-3" *ngFor="let risk of selectedApplication.risks">
+            <b>{{risk.name}}</b> <br>{{getPrice(risk.premiumList)}}zł
+          </div>
+        </div>
+
+        <mat-divider> </mat-divider>
+
+        <mat-divider> </mat-divider>
+
+        <h4><span class="badge badge-warning w-100">Seller</span></h4>
+        <div class="card-text col-sm-12 row">
+          <div class="col-sm-3"><b>First Name</b> <br>{{selectedApplication.seller.firstName}}</div>
+          <div class="col-sm-3"><b>Last Name</b> <br>{{selectedApplication.seller.lastName}}</div>
+          <div class="col-sm-3"><b>Email</b> <br>{{selectedApplication.seller.email}}</div>
+        </div>
+
+        <mat-divider> </mat-divider>
+
+        <mat-divider> </mat-divider>
+
+        <h4><span class="badge badge-warning w-100">Customer</span></h4>
+        <div class="card-text col-sm-12 row">
+          <div class="col-sm-3"><b>First Name</b> <br>{{selectedApplication.persons[0].firstName}}</div>
+          <div class="col-sm-3"><b>Gearbox Count</b> <br>{{selectedApplication.persons[0].lastName}}</div>
+          <div class="col-sm-3"><b>Pesel</b> <br>{{selectedApplication.persons[0].pesel}}</div>
+          <div class="col-sm-3"><b>Postal Code</b> <br>{{selectedApplication.persons[0].address.postalCode}}</div>
+          <div class="col-sm-3"><b>City</b> <br>{{selectedApplication.persons[0].address.city}}</div>
+          <div class="col-sm-3"><b>Street</b> <br>{{selectedApplication.persons[0].address.street}}</div>
+          <div class="col-sm-3"><b>House</b> <br>{{selectedApplication.persons[0].address.house}}</div>
+          <div class="col-sm-3"><b>Apartment</b> <br>{{selectedApplication.persons[0].address.apartment}}</div>
+          <div class="col-sm-3"><b>Day Of Birth</b> <br>{{selectedApplication.persons[0].dayOfBirth}}</div>
+          <div class="col-sm-3"><b>Driving License Issue Date</b> <br>{{selectedApplication.persons[0].drivingLicenseIssueDate}}</div>
+        </div>
+
+        <mat-divider> </mat-divider>
+
+        <mat-divider> </mat-divider>
+        <h4><span class="badge badge-warning w-100">Car</span></h4>
+        <div class="card-text col-sm-12 row">
+          <div class="col-sm-3"><b>Mark</b> <br>{{selectedApplication.vehicle.mark}}</div>
+          <div class="col-sm-3"><b>Model</b><br>{{selectedApplication.vehicle.model}}</div>
+          <div class="col-sm-3"><b>Rok produkcji</b><br>{{selectedApplication.vehicle.productionYear}}</div>
+          <div class="col-sm-3"><b>Vin</b><br>{{selectedApplication.vehicle.vin}}</div>
+          <div class="col-sm-3"><b>Licence Plate</b> <br>{{selectedApplication.vehicle.licencePlateNumber}}</div>
+          <div class="col-sm-3"><b>Engine Capacity</b><br>{{selectedApplication.vehicle.engineCapacity}}</div>
+          <div class="col-sm-3"><b>Type</b><br>{{selectedApplication.vehicle.type}}</div>
+          <div class="col-sm-3"><b>Load Weight</b><br>{{selectedApplication.vehicle.loadWeight}}</div>
+          <div class="col-sm-3"><b>Engine power</b> <br>{{selectedApplication.vehicle.enginePower}}</div>
+          <div class="col-sm-3"><b>Cylinders Count</b><br>{{selectedApplication.vehicle.cylindersCount}}</div>
+          <div class="col-sm-3"><b>Seat Count</b><br>{{selectedApplication.vehicle.seatCount}}</div>
+          <div class="col-sm-3"><b>Doors Count</b><br>{{selectedApplication.vehicle.doorsCount}}</div>
+          <div class="col-sm-3"><b>Gearbox Count</b> <br>{{selectedApplication.vehicle.gearboxCount}}</div>
+          <div class="col-sm-3"><b>Gearbox Type</b><br>{{selectedApplication.vehicle.gearboxType}}</div>
+          <div class="col-sm-3"><b>Engine HPower</b><br>{{selectedApplication.vehicle.engineHPower}}</div>
+          <div class="col-sm-3"><b>Fuel Type</b><br>{{selectedApplication.vehicle.fuelType}}</div>
+          <div class="col-sm-3"><b>Body Type</b> <br>{{selectedApplication.vehicle.bodyType}}</div>
+          <div class="col-sm-3"><b>Vehicle Value</b><br>{{selectedApplication.vehicle.vehicleValue}}</div>
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+
 </ng-template>
