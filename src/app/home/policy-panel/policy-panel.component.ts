@@ -96,16 +96,10 @@ export class PolicyPanelComponent implements OnInit {
   }
 
   getUserApplication() {
-<<<<<<< HEAD
-    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/1'  + '/byUser').subscribe(resp => {
-      this.selectedApplication = resp[0];
+    this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/' + this.userService.getUserObjet().id + '/byUser').subscribe(resp => {
       this.listInsurance = new MatTableDataSource(resp);
-
     }
-=======
-    return this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/' + this.userService.getUserObjet().id + '/byUser').subscribe(resp =>
-      this.listInsurance = new MatTableDataSource(resp)
->>>>>>> add93bb2a2ede97e6ea9f8e9b552500230a38fa6
+
     );
   }
 

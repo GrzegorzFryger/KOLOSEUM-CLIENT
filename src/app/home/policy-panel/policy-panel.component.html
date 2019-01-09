@@ -1,9 +1,6 @@
 
-<<<<<<< HEAD
+
 <mat-tab-group dynamicHeight [selectedIndex]="selectedCard" (selectedTabChange)="onLinkClick($event)" >
-=======
-<mat-tab-group  dynamicHeight selectedIndex="0" (selectedTabChange)="onLinkClick($event)" >
->>>>>>> add93bb2a2ede97e6ea9f8e9b552500230a38fa6
   <mat-tab label="Today ">
     <div class="first-box mat-elevation-z4">
       <ng-container *ngTemplateOutlet="tablePolicy"></ng-container>
@@ -133,7 +130,7 @@
 
 <ng-template #insuranceDatalist>
 
-  <div  class="col-sm-12">
+  <div  class="col-sm-12" *ngIf="selectedCard === 4">
     <mat-card class="">
       <mat-card-header>
           <h5>  Details of {{selectedApplication.number}}</h5>
