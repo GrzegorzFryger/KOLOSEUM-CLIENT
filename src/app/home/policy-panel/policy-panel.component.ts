@@ -3,12 +3,13 @@ import {InsuranceApplicaion} from '../../models/insurance-applicaion.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {UserRegisterService} from '../../user-register/user-register.service';
 import {FormControl, Validators} from '@angular/forms';
-import {MatTabChangeEvent, MatTableDataSource} from '@angular/material';
+import {MatSnackBar, MatTabChangeEvent, MatTableDataSource} from '@angular/material';
 import {HomeService} from '../home.service';
 import {convertInjectableProviderToFactory} from '@angular/core/src/di/util';
 import {Observable} from 'rxjs';
 import {Person} from '../../models/person.model';
 import {PremiumList} from '../../models/premium-list.model';
+import {SnackErrorComponent} from '../snack-error/snack-error.component';
 
 
 export interface Parametr {
@@ -38,9 +39,11 @@ export class PolicyPanelComponent implements OnInit {
   fields: Parametr[] = [
     {name: 'Policy Number', value: null},
   ];
+  
+  notFound: boolean;
 
 
-  constructor(private http: HttpClient, private homeService: HomeService, private userService: UserRegisterService) {
+  constructor(private http: HttpClient, private homeService: HomeService, private userService: UserRegisterService, public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -87,17 +90,29 @@ export class PolicyPanelComponent implements OnInit {
   }
 
   submitSearch() {
-    this.findPolicesByNumber(this.policyNumber).subscribe(resp => this.dataFromSearch = resp
-    );
+    this.findPolicesByNumber(this.policyNumber).subscribe(resp => {
+      if (resp.length < 1) {
+
+        this.openSnackBar();
+      }
+      this.dataFromSearch = resp ;
+    });
   }
 
   applyNumber(event) {
     this.policyNumber = event;
   }
 
+  openSnackBar() {
+    this.snackBar.openFromComponent(SnackErrorComponent, {
+      duration: 1000,
+    });
+  }
+
   getUserApplication() {
-    this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/' + this.userService.getUserObjet().id + '/byUser').subscribe(resp => {
-      this.listInsurance = new MatTableDataSource(resp);
+    this.http.get<InsuranceApplicaion[]>('http://localhost:8080/api/application/' + this.userService.getUserObjet().id + '/byUser')
+      .subscribe(resp => {
+        this.listInsurance = new MatTableDataSource(resp);
     }
 
     );

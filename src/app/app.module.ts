@@ -43,7 +43,7 @@ import {
   MatIconModule, MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatRippleModule, MatSelectModule, MatTableModule, MatTabsModule
+  MatRippleModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
@@ -52,6 +52,7 @@ import { ChartPanelComponent } from './home/chart-panel/chart-panel.component';
 import {ChartsModule} from 'ng2-charts';
 
 import {ScoreboardComponent} from './user-panel/scoreboard/scoreboard.component';
+import { SnackErrorComponent } from './home/snack-error/snack-error.component';
 
 
 
@@ -103,6 +104,7 @@ const appRoutes: Routes = [
     PolicyPanelComponent,
     ChartPanelComponent,
     ScoreboardComponent,
+    SnackErrorComponent,
 
 
   ],
@@ -129,7 +131,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatGridListModule,
-    ChartsModule
+    ChartsModule,
+    MatSnackBarModule
 
 
   ],
@@ -158,6 +161,7 @@ const appRoutes: Routes = [
       multi: true
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SnackErrorComponent]
 })
 export class AppModule { }
