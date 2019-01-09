@@ -3,16 +3,14 @@
     <mat-list>
       <mat-list-item *ngFor="let data of messages">
         <img matListAvatar src="https://avatars0.githubusercontent.com/u/22495251?s=400&v=4" alt="">
-        <h3 matLine> Nowe powiadomienie </h3>
-        <p matLine>
-          {{data}}
-
-        </p>
+        <h3 matLine><b>Nowe powiadomienie</b></h3>
+        <p matLine>{{data}}</p>
       </mat-list-item>
+      <button class="float-right" mat-flat-button (click)="clearNotification()" *ngIf="messages.length != 0">clear</button>
     </mat-list>
   </mat-menu>
 
   <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon matBadge="{{count}}" matBadgeColor="warn">announcement</mat-icon>
+    <mat-icon  matBadge="{{count}}" matBadgeColor="warn">announcement</mat-icon>
   </button>
 </div>

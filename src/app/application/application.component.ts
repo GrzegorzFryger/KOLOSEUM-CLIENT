@@ -22,6 +22,7 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
     this.registerService = this.service;
+    this.service.getVehicles('productionYear');
     this.pickedDayOfBirth = {year: 1990, month: 1, day: 1};
     this.pickedDrivingLicenseIssueDate = {year: 2008, month: 1, day: 1};
     this.service.marks = [];

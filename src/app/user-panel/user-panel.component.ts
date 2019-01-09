@@ -43,7 +43,16 @@ export class UserPanelComponent implements OnInit {
   }
 
   onScoreBoard() {
+    this.renderer.removeClass(this.panel.nativeElement, 'mx-auto');
+    this.renderer.addClass(this.panel2.nativeElement, 'col-lg-8');
     this.router.navigate(['scoreboard'], {relativeTo: this.route});
+  }
+
+  isUserHavePointsToAdd(): boolean {
+    let user: ApplicationUser;
+    user = this.userService.getUserObjet();
+
+    return user.experience.pointsToAdd > 0;
   }
 
 }

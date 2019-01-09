@@ -23,7 +23,6 @@ export class ApplicationService {
   register: Register = new Register();
 
   constructor(private http: HttpClient, private userService: UserRegisterService) {
-    this.getVehicles('productionYear');
     this.productionYears.sort();
   }
 

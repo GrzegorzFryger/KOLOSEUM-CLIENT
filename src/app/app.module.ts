@@ -47,8 +47,13 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PolicyPanelComponent } from './home/policy-panel/policy-panel.component';
+<<<<<<< HEAD
 import { ChartPanelComponent } from './home/chart-panel/chart-panel.component';
 import {ChartsModule} from 'ng2-charts';
+=======
+import {ScoreboardComponent} from './user-panel/scoreboard/scoreboard.component';
+
+>>>>>>> add93bb2a2ede97e6ea9f8e9b552500230a38fa6
 
 
 
@@ -65,7 +70,8 @@ const appRoutes: Routes = [
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
   {path: 'userpanel', component: UserPanelComponent, children: [
-      {path: 'settings', component: SettingsComponent}
+      {path: 'settings', component: SettingsComponent},
+      {path: 'scoreboard', component: ScoreboardComponent}
     ], canActivate: [AuthGuard]},
 
   {path: 'todos', component: TodosComponent, children: [
@@ -95,7 +101,11 @@ const appRoutes: Routes = [
     SettingsComponent,
     NotificationComponent,
     PolicyPanelComponent,
+<<<<<<< HEAD
     ChartPanelComponent,
+=======
+    ScoreboardComponent,
+>>>>>>> add93bb2a2ede97e6ea9f8e9b552500230a38fa6
 
   ],
   imports: [

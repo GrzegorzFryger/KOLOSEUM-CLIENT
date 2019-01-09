@@ -10,10 +10,10 @@ export class Expierence {
   level: number;
   pointsToAdd: number;
   speedAttack: number;
+  percentToNextLvl: number;
 
   firstName: string;
   lstName: string;
-
 
 
 }

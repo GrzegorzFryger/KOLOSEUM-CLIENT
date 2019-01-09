@@ -30,7 +30,7 @@
           <a style="cursor: pointer;" (click)="onScoreBoard()"  class="list-group-item ">
             <div>
               <h4 class="list-group-item-heading text-center ">
-                Scoreboard</h4>
+                Experience  <span *ngIf="isUserHavePointsToAdd()" class="badge badge-danger ">new</span></h4>
             </div>
           </a>
         </ul>
