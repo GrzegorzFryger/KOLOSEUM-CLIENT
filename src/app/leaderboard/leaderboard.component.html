@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row">
+  <div class="row size-small">
     <div class="col-12">
 
 
-      <div *ngFor="let user of applicationUsers" class="shadow-sm p-3 mb-5 bg-white rounded">
+      <div *ngFor="let user of applicationUsers" class="shadow mb-4 p-2 bg-white rounded">
 
 
         <p>
-          <ngb-progressbar placement="top" type="warning" [striped]="true" [animated]="true" height="25px"
+          <ngb-progressbar class="bar-pro" placement="top" type="warning" [striped]="true" [animated]="true" height="16px"
                            ngbTooltip="{{user.expTotalEarned}}  / {{user.expToNextLevel}}"
                            value="{{user.percentToNextLvl * 100}} ">
             <i>{{user.percentToNextLvl * 100}} %</i>
@@ -15,8 +15,8 @@
         </p>
 
 
-        <div class="row">
-          <div class="col-sm-12 mt-4">
+        <div class="row ">
+          <div class="col-sm-12">
             <div class="col-sm-4 float-left">
               <p> {{user.firstName}} {{user.lastName}}</p>
             </div>
